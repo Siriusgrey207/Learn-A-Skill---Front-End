@@ -1,0 +1,6 @@
+.panel--aboutUs {
+    p,
+    img {
+        @apply mt-halfSpacing;
+    }
+}

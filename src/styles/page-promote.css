@@ -1,0 +1,131 @@
+.memberships-container {
+    .error-message {
+        @apply !mt-0;
+    }
+}
+
+.membership-length-buttons {
+    @apply grid grid-cols-2 gap-halfSpacing mb-spacing;
+    .btn {
+        @apply flex items-center gap-[10px] justify-center;
+    }
+}
+
+.panel--membership__perks-list {
+    @apply mt-halfSpacing w-[60%];
+    .perk {
+        @apply pl-[20px] relative;
+        &::before {
+            content: "";
+            @apply block w-[3px] h-[3px] absolute top-[8px] left-[4px] bg-white rounded-[10px];
+        }
+        &:not(:first-of-type) {
+            @apply mt-[3px];
+        }
+        span {
+            @apply text-[14px] leading-[22px] block text-left text-white;
+        }
+    }
+}
+
+.panel--membership__buttons {
+    @apply mt-halfSpacing;
+    .btn {
+        @apply flex items-center justify-center w-[120px] pl-3 pr-4 gap-2.5 py-2.5;
+        &:hover,
+        &:focus {
+            .svg {
+                @apply transform scale-[1.2];
+            }
+        }
+        .svg {
+            flex: 0 0 24px;
+            @apply w-[24px] h-[24px];
+        }
+    }
+}
+
+.panel--membership__price-per-month,
+.panel--membership__price-per-year {
+    @apply absolute top-[26px] right-[30px];
+    span {
+        @apply text-[22px] h-[28px] leading-[28px] font-medium text-white;
+    }
+}
+
+.membership {
+    @apply relative overflow-hidden;
+    .svg--checkIcon2 {
+        flex: 0 0 438px;
+        @apply w-[438px] h-[438px] fill-white transform rotate-[15deg] absolute top-0 right-0 opacity-20
+        pointer-events-none select-none top-[-80px] right-[-55px] duration-[2000ms];
+    }
+    &:not(:first-of-type) {
+        @apply mt-spacing;
+    }
+    &.membership--loading {
+        .svg.svg--checkIcon2 {
+            @apply right-[-500px] rotate-[45deg];
+        }
+    }
+    &:not(&.membership--loading) {
+        .svg.svg--checkIcon2 {
+            @apply right-[-55px] rotate-[15deg];
+        }
+    }
+    &.membership--verified,
+    &.membership--premium,
+    &.membership--organization {
+        h1 {
+            @apply text-white;
+            &::before {
+                @apply bg-white;
+            }
+        }
+    }
+    &.membership--verified {
+        @apply bg-green;
+        .membership__save {
+            @apply border-[2px] border-solid border-green;
+            span {
+                @apply text-green;
+            }
+        }
+    }
+    &.membership--premium {
+        @apply bg-orange;
+        .membership__save {
+            @apply border-[2px] border-solid border-orange;
+            span {
+                @apply text-orange;
+            }
+        }
+    }
+    &.membership--organization {
+        @apply bg-red;
+        .membership__save {
+            @apply border-[2px] border-solid border-red;
+            span {
+                @apply text-red;
+            }
+        }
+    }
+}
+
+.membership__save {
+    @apply rounded-medium bg-white px-3 py-1;
+    span {
+        @apply inline-block font-bold text-gray-300 text-[14px] leading-[18px] h-[18px];
+    }
+}
+
+.panel--membership__price-per-year {
+    @apply flex items-center gap-halfSpacing;
+}
+
+.panel--thankYou {
+    p,
+    .btn--cancelSubscription {
+        @apply mt-halfSpacing;
+    }
+}

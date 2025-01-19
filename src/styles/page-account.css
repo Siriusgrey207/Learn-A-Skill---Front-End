@@ -1,0 +1,100 @@
+.panel--account {
+    .svg--checkIcon2 {
+        flex: 0 0 25px;
+        @apply w-[25px] h-[25px] fill-green;
+    }
+    .loading-container {
+        @apply mt-0;
+    }
+}
+
+.account__img-container {
+    flex: 0 0 100px;
+    @apply w-[100px] h-[100px] bg-gray-200 rounded-full overflow-hidden;
+    .svg--account {
+        flex: 0 0 118px;
+        @apply w-[118px] h-[118px] opacity-30 relative left-[-9px] top-[-9px]
+        pointer-events-none select-none;
+    }
+    .account__img {
+        @apply w-full h-full object-cover;
+    }
+}
+
+.account__details {
+    @apply ml-spacing;
+}
+
+.account__main {
+    @apply flex items-center;
+}
+
+.account__name {
+    @apply flex items-center gap-2.5;
+    h2 {
+        @apply text-[24px] leading-[28px] font-medium text-left text-green;
+    }
+}
+
+.account__description {
+    @apply text-[14px] leading-[22px] text-left text-gray-300 mt-2.5;
+}
+
+.account__further-details {
+    @apply flex items-center mt-2.5;
+    small {
+        @apply text-[14px] leading-[22px] text-green font-medium;
+    }
+    i {
+        flex: 0 0 4px;
+        @apply mx-1.5 w-[4px] h-[4px] bg-gray-300 rounded-full;
+    }
+}
+
+.panel--sendEmail {
+    .form-group {
+        @apply mt-spacing;
+        &.from-group--send {
+            @apply mt-halfSpacing;
+        }
+        input,
+        textarea {
+            flex: 1 1 auto;
+            @apply w-full mt-halfSpacing;
+        }
+        textarea {
+            @apply h-[150px];
+        }
+    }
+    .btn--submit {
+        @apply flex items-center py-1 px-7 gap-halfSpacing min-h-[44px];
+        .svg {
+            flex: 0 0 24px;
+            @apply w-[24px] h-[24px];
+        }
+    }
+}
+
+.lazy-info-loading {
+    .toggle-span {
+        @apply !text-green underline text-[14px] leading-[22px] cursor-pointer duration-200;
+        &:hover,
+        &:focus {
+            @apply brightness-125;
+        }
+    }
+}
+
+.buttons-container {
+    @apply grid gap-spacing;
+    &.buttons-container--2 {
+        @apply grid-cols-2;
+    }
+    .btn {
+        @apply flex items-center justify-center gap-halfSpacing;
+        .svg {
+            flex: 0 0 24px;
+            @apply w-[24px] h-[24px];
+        }
+    }
+}

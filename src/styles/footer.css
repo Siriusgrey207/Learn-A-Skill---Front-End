@@ -1,0 +1,79 @@
+#ndzn-footer {
+    box-shadow: 0 -4px 10px 0 #00000030;
+    @apply bg-green mt-auto;
+}
+
+.footer__logo {
+    @apply flex items-center;
+    .logo {
+        @apply w-[119px] h-auto;
+    }
+    h6 {
+        @apply text-[17px] leading-[23px] inline-block font-medium text-left text-white;
+    }
+    span {
+        @apply text-gray-200 mt-2;
+    }
+}
+
+.footer__logo__text {
+    @apply ml-[30px];
+}
+
+.footer__links {
+    @apply ml-auto;
+}
+
+.footer__socials {
+    @apply bg-white bg-opacity-10;
+}
+
+.footer__main {
+    .container {
+        @apply py-5;
+    }
+}
+
+.footer__socials {
+    .container {
+        @apply py-[18px];
+    }
+    .socials__left {
+        @apply flex items-center gap-1;
+    }
+    .socials-link {
+        @apply p-2;
+        .svg {
+            @apply duration-200;
+        }
+        &:hover,
+        &:focus {
+            .svg {
+                @apply transform scale-[1.15];
+            }
+        }
+    }
+}
+
+.socials__right {
+    @apply ml-auto;
+    > a {
+        @apply flex items-center gap-[15px] px-3 py-2 duration-200;
+        &:hover,
+        &:focus {
+            svg {
+                @apply transform scale-[1.1];
+            }
+            span {
+                @apply transform translate-x-[-3px];
+            }
+        }
+        svg,
+        span {
+            @apply duration-200;
+        }
+        span {
+            @apply text-white;
+        }
+    }
+}

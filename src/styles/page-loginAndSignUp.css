@@ -1,0 +1,207 @@
+.panel.login-and-signup-actions {
+  @apply grid grid-cols-2 gap-halfSpacing;
+}
+
+label {
+  @apply text-[14px] leading-[22px] block text-left font-bold text-green;
+}
+
+.panel--login,
+.panel--signup {
+  .input-container {
+    @apply block mt-halfSpacing;
+  }
+  .form--group--error .error-message {
+    @apply mt-0;
+  }
+}
+
+.form--login,
+.form--signup {
+  @apply mt-spacing flex flex-col gap-spacing;
+  .input {
+    &.input--text,
+    &.input--password,
+    &.input--email {
+      flex: 1 1 auto;
+      @apply block w-full;
+    }
+  }
+  .btn--login,
+  .btn--signup {
+    @apply w-[120px];
+  }
+}
+
+.form-group {
+  &.form-group--tos {
+    grid-template-columns: 28px auto;
+    @apply grid gap-x-halfSpacing gap-y-2.5;
+    label {
+      @apply col-span-2;
+    }
+    p {
+      @apply block leading-[23px] mt-[3px];
+    }
+    a {
+      @apply underline;
+    }
+  }
+}
+
+.custom-checkbox-cosntainer {
+  flex: 0 0 28px;
+  box-shadow: 0 2px 2px 0 #0000000d;
+  @apply w-[28px] h-[28px] relative bg-white rounded-small flex;
+  .svg--check {
+    @apply absolute inset-0 m-auto opacity-0 pointer-events-none select-none z-[5] fill-green;
+  }
+  .input-container,
+  .input {
+    flex: 0 0 28px;
+    @apply w-[28px] h-[28px] mt-0;
+  }
+  .input:checked + .svg--check {
+    @apply !opacity-100;
+  }
+  .input {
+    @apply relative z-[2] opacity-0 cursor-pointer w-[240px];
+  }
+}
+
+.p--forgottenPassword {
+  @apply font-medium;
+  button {
+    @apply underline text-green;
+  }
+}
+
+.form--register {
+  &,
+  .form-group {
+    @apply mt-spacing;
+  }
+  .form-group--tos a {
+    @apply inline-block ml-1;
+  }
+  .custom-checkbox-cosntainer {
+    .input-container {
+      @apply mt-0;
+      .input {
+        @apply w-[125px];
+      }
+    }
+  }
+  .input-container {
+    @apply mt-halfSpacing;
+    .input {
+      @apply w-full block;
+    }
+  }
+}
+
+.infoContainer {
+  box-shadow: 0 2px 2px 0 #0000001a;
+  @apply flex items-center gap-halfSpacing bg-white py-2
+        px-3.5 rounded-medium;
+  &.infoContainer--categories {
+    @apply mt-halfSpacing;
+  }
+  .svg--info {
+    flex: 0 0 24px;
+    @apply w-[24px] h-[24px] fill-gray-300;
+    path {
+      @apply fill-gray-300;
+    }
+  }
+  span {
+    @apply text-gray-300;
+  }
+}
+
+.selectContainer {
+  @apply relative mt-halfSpacing;
+  .svg--chevron {
+    flex: 0 0 28px;
+    @apply absolute inset-y-0 right-3 my-auto w-[28px] h-[28px] fill-gray-300 
+        pointer-events-none select-none;
+  }
+}
+select {
+  box-shadow: 0 2px 2px 0 #0000001a;
+  @apply rounded-medium text-gray-300 outline-none py-3 min-h-[50px] pl-[18px] pr-[60px] w-full
+    cursor-pointer font-bold text-[14px] appearance-none;
+}
+
+/* Forgot Password */
+.panel--forgot-password {
+  > p {
+    @apply mt-halfSpacing;
+  }
+  .form--forgot-password {
+    flex: 1 1 auto;
+    @apply mt-halfSpacing flex items-center w-full gap-halfSpacing;
+    .input,
+    .input-container,
+    .form-group {
+      flex: 1 1 auto;
+      @apply w-full;
+    }
+    .input-container {
+      @apply mt-2;
+    }
+    .input {
+      @apply block;
+    }
+    .btn--forgot-password {
+      @apply min-h-[50px] mt-auto w-[190px];
+    }
+  }
+  .error-message {
+    @apply !mt-halfSpacing;
+  }
+}
+
+.success-message {
+  @apply flex items-start mt-halfSpacing bg-[#3faf6a] rounded-[8px] p-3 relative;
+  &::before {
+    content: "";
+    @apply absolute block top-0 left-0 w-full h-full border-[2px] border-solid border-white/10;
+  }
+  .svg--success {
+    flex: 0 0 20px;
+    @apply w-[20px] h-[20px] fill-white mr-3;
+  }
+  span {
+    @apply font-medium text-white;
+  }
+}
+
+/* Reset password */
+.panel--reset-password > p {
+  @apply mt-halfSpacing;
+}
+.form--reset-password {
+  @apply mt-halfSpacing;
+  .form__fields {
+    @apply grid grid-cols-2 gap-halfSpacing;
+  }
+  .form-group {
+    label {
+      @apply mb-2;
+    }
+  }
+  .input {
+    @apply block w-full;
+  }
+  .btn--submit,
+  .error-message {
+    @apply mt-halfSpacing;
+  }
+  .btn--submit {
+    @apply w-[150px];
+    > .btn__text {
+      @apply mt-[-1px];
+    }
+  }
+}

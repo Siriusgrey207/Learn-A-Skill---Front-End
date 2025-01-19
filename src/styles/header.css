@@ -1,0 +1,82 @@
+#ndzn-header {
+  @apply bg-green;
+  .logo {
+    @apply w-[80px] h-auto;
+  }
+  .container {
+    @apply py-[20px];
+  }
+  h1 {
+    @apply text-white text-[20px] leading-[28px] pb-1 tracking-wide;
+    &::before {
+      @apply hidden;
+    }
+  }
+}
+
+.header__left {
+  @apply flex items-center;
+  span {
+    @apply text-[14px] leading-[18px] text-opacity-80 tracking-wide;
+  }
+}
+
+.header__left__text {
+  @apply ml-4 pointer-events-none select-none;
+}
+
+.btn.btn--header {
+  @apply flex items-center px-2.5 py-2 bg-white bg-opacity-0 gap-2 rounded-[10px];
+  &:hover,
+  &:focus {
+    @apply bg-opacity-[0.06];
+    .svg {
+      @apply transform scale-[1.1];
+    }
+    span {
+      @apply text-opacity-100;
+    }
+  }
+  &.btn--login {
+    @apply px-3;
+  }
+  .svg,
+  span {
+    @apply duration-200;
+  }
+  .svg {
+    flex: 0 0 20px;
+    @apply w-[20px] h-[20px] fill-white;
+    path {
+      @apply fill-white;
+    }
+  }
+  .btn__text {
+    @apply text-[14px] leading-[22px] inline-block font-medium text-white;
+  }
+}
+
+.header__right {
+  @apply ml-auto flex items-center;
+  > i {
+    @apply w-[2px] h-[20px] rounded-[10px] bg-white bg-opacity-20 mx-2;
+  }
+}
+
+.btn--profile__img-container {
+  @apply w-[20px] h-[20px] rounded-full overflow-hidden bg-white;
+  .svg.svg--account {
+    flex: 0 0 24px;
+    @apply w-[24px] h-[24px] transform translate-x-[-2px];
+    path {
+      @apply !fill-gray-300 relative z-[2];
+    }
+  }
+}
+
+.btn--profile__img {
+  @apply w-[20px] h-[20px] rounded-full;
+  img {
+    @apply w-full h-full;
+  }
+}

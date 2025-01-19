@@ -1,0 +1,18 @@
+.panel--donations {
+    p,
+    .link-paypal {
+        @apply inline-block mt-[20px];
+    }
+    .link-paypal {
+        @apply block w-[146px] h-auto cursor-pointer;
+        &:hover,
+        &:focus {
+            img {
+                @apply transform scale-[1.08];
+            }
+        }
+        img {
+            @apply pointer-events-none select-none duration-200;
+        }
+    }
+}

@@ -1,0 +1,525 @@
+.skills-list {
+  > i {
+    @apply w-full h-[2px] bg-gray-200 my-spacing;
+  }
+}
+
+.skills-list-container {
+  @apply mt-spacing gap-spacing grid grid-cols-1;
+  &.skills-list-container--basic {
+    @apply mt-0;
+  }
+}
+
+.user-info {
+  @apply gap-2;
+  span,
+  i {
+    @apply inline-block mb-[-1px] !leading-[18px];
+  }
+  i {
+    flex: 0 0 4px;
+    @apply w-[4px] h-[4px] rounded-large bg-gray-300;
+  }
+  .user-info__avatar,
+  .avatar {
+    flex: 0 0 25px;
+    @apply w-[25px] h-[25px] rounded-full;
+  }
+  &,
+  .user-info__avatar-and-username,
+  .user-info__rating,
+  .user-info__user-type {
+    @apply flex items-center flex-row h-[25px];
+  }
+  .user-info__avatar {
+    @apply bg-gray-200 rounded-full;
+    &.user-info__avatar--no-avatar {
+      flex: 0 0 28px;
+      @apply bg-transparent w-[28px] h-[28px];
+    }
+  }
+  .user-info__avatar-and-username {
+    @apply gap-2;
+  }
+  .user-info__rating {
+    @apply gap-1;
+    span {
+      @apply text-orange font-medium;
+    }
+  }
+  .svg--stars {
+    @apply inline-block mt-[-2px];
+  }
+  .user-info__user-type.user-info__user-type--inOrganization {
+    span {
+      @apply text-orange;
+    }
+  }
+}
+
+.panel.skill-card {
+  @apply p-0 flex items-start;
+}
+
+.skill-card {
+  @apply relative min-h-[205px];
+  &.skill-card--userIsPremium.skill-card--highlighted {
+    &::before {
+      content: "";
+      @apply block absolute top-0 left-0 w-full h-full rounded-large border-[2px] border-solid
+            border-orange pointer-events-none select-none;
+    }
+    .skill-card__details {
+      @apply bg-[#fff0dc] rounded-r-large;
+    }
+    .details__skill-description {
+      &::before {
+        background: linear-gradient(to bottom, transparent, #fff0dc);
+      }
+    }
+    .details__price span {
+      @apply text-orange;
+    }
+  }
+  &.skill-card--userIsPremium:not(&.skill-card--highlighted) {
+    &::before {
+      content: "";
+      @apply block absolute top-0 left-0 w-full h-full rounded-large border-[2px] border-solid
+            border-green pointer-events-none select-none;
+    }
+    .skill-card__details {
+      @apply bg-green bg-opacity-60 rounded-r-large;
+    }
+    .user-info {
+      .svg--account path {
+        @apply fill-white;
+      }
+      i {
+        @apply bg-white;
+      }
+      span {
+        @apply text-white;
+      }
+    }
+    .details__skill-title,
+    .details__skill-description {
+      @apply text-white;
+    }
+    .details__skill-description {
+      &::before {
+        background: linear-gradient(to bottom, transparent, #7ea58d);
+      }
+    }
+    .svg--gray-heart path {
+      @apply fill-white;
+    }
+    .details__price span {
+      @apply !text-white;
+    }
+  }
+  .skill-card__img {
+    flex: 0 0 230px;
+    @apply w-[230px] min-h-[205px] h-full rounded-l-large overflow-hidden;
+    img {
+      flex: 1 1 auto;
+      @apply w-full min-h-[205px] h-full object-cover;
+    }
+  }
+  .details__price {
+    @apply absolute top-[10px] right-[10px] flex items-center
+        justify-center;
+    span {
+      @apply text-white text-[22px] font-semibold leading-[30px] relative z-[3] text-green;
+    }
+  }
+}
+
+.skill-card.skill-card--editVariant {
+  @apply h-full;
+  &.skill-card--underReview {
+    @apply relative;
+    .skill-card__img,
+    .skill-card__details {
+      @apply opacity-70 pointer-events-none select-none;
+    }
+    .skill-card__under-review {
+      @apply absolute z-[3] top-[-10px] right-[-10px] bg-red rounded-large px-5 py-2;
+      span {
+        @apply text-white font-bold text-[14px] leading-[24px];
+      }
+    }
+  }
+  .skill-card__img {
+    flex: 0 0 250px;
+    @apply w-[250px] h-full rounded-br-medium rounded-bl-[0px];
+    img {
+      @apply max-w-[unset];
+    }
+  }
+  .details__skill-description {
+    @apply max-h-[unset];
+    &::before {
+      @apply hidden;
+    }
+  }
+  .skill-card__details .details__skill-tags-and-actions {
+    @apply mt-0 min-h-[42px];
+  }
+  .skill-card__actions {
+    & {
+      @apply gap-2.5 mt-4;
+    }
+    &,
+    .btn {
+      @apply flex items-center;
+    }
+    .svg {
+      path {
+        @apply fill-white;
+      }
+    }
+  }
+  .btn {
+    @apply pl-4 gap-2 py-0 h-[40px] rounded-[10px];
+    .btn__text {
+      @apply text-[14px] leading-[22px] inline-block text-white;
+    }
+  }
+  .btn--promote,
+  .btn--edit {
+    .svg {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px];
+    }
+  }
+  .btn--remove {
+    @apply w-[112px];
+    .svg {
+      flex: 0 0 16px;
+      @apply w-[16px] h-[16px];
+    }
+  }
+  .btn--edit small {
+    @apply text-white;
+  }
+  .btn--edit.btn--edit--comingSoon {
+    @apply pointer-events-none select-none !opacity-60;
+  }
+}
+
+.skill-card__details {
+  flex: 1 1 auto;
+  @apply p-halfSpacing flex flex-col items-start h-full w-full;
+  span {
+    @apply text-gray-300;
+  }
+  .details__skill-title,
+  .details__skill-description {
+    @apply text-left inline-block mt-1.5;
+  }
+
+  .details__skill-title {
+    @apply text-[17px] leading-[23px] text-black font-semibold;
+  }
+
+  .details__skill-description {
+    @apply text-[14px] leading-[22px] text-gray-300 font-normal max-h-[66px] overflow-hidden relative;
+    &::before {
+      content: "";
+      background: linear-gradient(to bottom, transparent, #f8f8f8);
+      @apply absolute block top-0 left-0 w-full h-full pointer-events-none select-none;
+    }
+  }
+  .details__skill-tags {
+    @apply flex items-center flex-wrap gap-2 pr-4;
+  }
+  .skill-tag {
+    @apply inline-flex items-center justify-center px-4 pb-[2px] pt-[3px] border-[1px] border-solid 
+        border-gray-300 rounded-large bg-white;
+    &.skill-tag--new {
+      @apply pb-[3px] pt-[3px] pl-2 gap-1 border-orange;
+      .svg {
+        @apply w-[18px] h-[18px] mt-[-1px];
+        path {
+          @apply !fill-orange;
+        }
+      }
+      small {
+        @apply !text-orange;
+      }
+    }
+    small {
+      @apply text-[12px] font-normal leading-[19px] inline-block text-gray-300
+            font-medium;
+    }
+  }
+  .details__skill-tags-and-actions {
+    @apply pt-2 mt-auto flex items-center w-full min-h-[50px];
+  }
+  .details__actions {
+    @apply ml-auto flex items-center gap-[8px];
+  }
+  .btn--see-more,
+  .btn--report {
+    @apply px-3.5 py-1.5;
+    .btn__text {
+      @apply whitespace-nowrap;
+    }
+  }
+  .btn--report {
+    @apply flex items-center !pr-2 gap-1;
+    .svg {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px];
+      path {
+        @apply fill-white;
+      }
+    }
+  }
+  .form-group .btn--report {
+    @apply !px-3.5 justify-center;
+  }
+  .btn--add-to-favorites {
+    @apply p-2;
+  }
+}
+
+.skills-not-found-container {
+  @apply mt-spacing pb-spacing mb-spacing border-b-[2px] border-solid border-gray-200;
+}
+
+.edit-taught-skill-container {
+  @apply flex flex-col gap-spacing;
+}
+
+.remove-skill-container,
+.promote-skill-container {
+  @apply relative;
+  .dropdown {
+    box-shadow: 0 4px 10px 0 #0000001a;
+    @apply absolute bottom-[100%] bg-white rounded-medium duration-200 p-halfSpacing
+        pointer-events-none select-none opacity-0 invisible;
+    &::before {
+      content: "";
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid white;
+      @apply block absolute bottom-[-8px] left-12 w-0 h-0 bg-transparent;
+    }
+    &.dropdown--toggled {
+      bottom: calc(100% + 15px);
+      @apply pointer-events-auto select-auto opacity-100 visible;
+    }
+  }
+}
+
+.remove-skill-container {
+  @apply relative;
+  .dropdown {
+    @apply w-[230px];
+  }
+  .btn--confirm {
+    @apply mt-halfSpacing px-4 w-[88px] justify-center;
+  }
+}
+
+.promote-skill-container {
+  .dropdown {
+    @apply w-[312px];
+  }
+}
+
+.promote-skill-container__buttons {
+  @apply grid grid-cols-2 gap-halfSpacing mt-halfSpacing;
+  .btn {
+    @apply !px-4 justify-center;
+  }
+}
+
+.categories-dropdown {
+  @apply flex items-start flex-wrap gap-halfSpacing;
+  .categories-container {
+    @apply relative w-full;
+  }
+  .dropdown {
+    box-shadow: 0 4px 10px 0 #0000001a;
+    top: calc(100% + 15px);
+    @apply w-full h-[350px] overflow-auto bg-white rounded-large absolute pointer-events-none select-none
+        invisible opacity-0;
+    &.dropdown--toggled {
+      @apply pointer-events-auto select-auto visible opacity-100;
+    }
+  }
+  .dropdown__inner {
+    @apply p-halfSpacing;
+  }
+  .input {
+    @apply w-full;
+  }
+  .tags-container {
+    @apply mt-0 gap-[10px];
+  }
+  .tag {
+    @apply px-4 py-1 border-[1px] border-solid border-gray-300 bg-white rounded-[16px];
+    .btn__text {
+      @apply text-[12px] leading-[20px] inline-block font-medium text-gray-300;
+    }
+    .svg--close {
+      flex: 0 0 10px;
+      @apply w-[10px] h-[10px];
+      path {
+        @apply fill-gray-300;
+      }
+    }
+  }
+}
+
+.dropdown-category {
+  &:not(:first-of-type) {
+    @apply mt-halfSpacing;
+  }
+  &:not(:last-of-type) {
+    @apply relative pb-2;
+    &::before {
+      content: "";
+      @apply block absolute bottom-0 left-0 w-full h-[1px] bg-gray-200;
+    }
+  }
+  h5 {
+    @apply text-[18px] leading-[27px] font-medium text-gray-400 mb-1;
+  }
+  .dropdown-subcategories {
+    @apply grid grid-cols-2;
+  }
+  .btn--subcategory {
+    @apply pr-2.5 pl-0 py-1.5 text-left rounded-small;
+    &:hover,
+    &:focus {
+      .btn__text {
+        @apply text-gray-400;
+      }
+    }
+    .btn__text {
+      @apply text-gray-300;
+    }
+  }
+}
+
+.form--new-skill {
+  @apply grid grid-cols-2 gap-spacing mt-spacing;
+  .form-group {
+    @apply col-span-2;
+    label {
+      @apply mb-3;
+    }
+    textarea,
+    .input {
+      flex: 1 1 auto;
+      @apply w-full;
+    }
+    textarea {
+      @apply h-[184px];
+    }
+  }
+  .form-group--lesson-duration,
+  .form-group--price,
+  .form-group--email,
+  .form-group--phone,
+  .form-group--discord,
+  .form-group--skype {
+    @apply col-span-1;
+  }
+  .form-group--price {
+    .form-group__inner {
+      @apply relative;
+    }
+    .dropdown-container-currency {
+      @apply absolute right-[8px] top-[41px];
+    }
+    .btn--currency-dd {
+      @apply flex items-center pl-3.5 pr-1.5 py-1.5 bg-gray-200 rounded-small;
+      &:hover,
+      &:focus {
+        @apply bg-gray-200 brightness-[1.02];
+      }
+      .btn__text {
+        @apply mb-[-1px] inline-block;
+      }
+    }
+    .svg--chevron {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px] ml-0.5 inline-block mt-[-1px];
+    }
+    .input {
+      @apply pr-[60px] appearance-none;
+    }
+  }
+  .form-group--image {
+    .form-group__inner {
+      @apply flex flex-col items-start gap-halfSpacing;
+    }
+    .input {
+      @apply bg-white;
+    }
+  }
+  .form-group--tos {
+    p > a {
+      @apply inline-block ml-[5px];
+    }
+  }
+  .image-preview {
+    @apply rounded-small overflow-hidden border-[2px] border-solid border-green w-[185px];
+  }
+  .form-group--error .error-message {
+    @apply mt-0;
+  }
+}
+
+.dropdown-container-currency {
+  .dropdown {
+    @apply absolute top-full duration-200 opacity-0 invisible pointer-events-none select-none
+        bg-gray-200 rounded-small w-[130px] right-0;
+    &::before {
+      content: "";
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #e0e0e0;
+      @apply block absolute top-[-7px] right-7 w-[0px] h-[0px];
+    }
+    &.dropdown--toggled {
+      top: calc(100% + 16px);
+      @apply opacity-100 visible pointer-events-auto select-auto;
+    }
+  }
+  .btn--currency-dd .svg {
+    @apply duration-200;
+  }
+  .btn--currency-dd--toggled .svg {
+    @apply transform scale-y-[-1];
+  }
+  .dropdown-inner {
+    @apply grid grid-cols-2 gap-1.5 p-3 relative z-[3];
+  }
+  .btn--currency {
+    @apply px-2 py-0.5 rounded-small;
+    &:hover,
+    &:focus {
+      @apply bg-white bg-opacity-30;
+    }
+    span {
+      @apply text-black;
+    }
+  }
+  .btn--currency--selected {
+    @apply bg-white bg-opacity-50;
+  }
+}
+
+/* .filters-container {
+    flex: 1 1 auto;
+    @apply w-full mt-spacing;
+}
+.filters-group.filters-group--toggle {
+    @apply grid grid-cols-4 gap-spacing;
+} */

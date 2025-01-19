@@ -1,0 +1,18 @@
+.notification {
+    box-shadow: none;
+    @apply fixed bottom-0 w-full bg-gray-100 flex justify-center px-spacing py-3
+    pointer-events-none select-none opacity-0 invisible duration-200 z-[9999];
+    &.notification--show {
+        box-shadow: 0px -4px 10px rgb(0 0 0 / 20%);
+        @apply opacity-100 visible;
+    }
+    span {
+        @apply text-white font-semibold text-[16px] leading-[24px] pointer-events-none select-none;
+    }
+    &.notification--danger {
+        @apply bg-red;
+    }
+    &.notification--success {
+        @apply bg-green;
+    }
+}

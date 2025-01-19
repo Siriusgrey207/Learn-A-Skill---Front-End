@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --spacing: 30px;
+    --halfSpacing: 15px;
+    --containerPadding: 20px;
+}

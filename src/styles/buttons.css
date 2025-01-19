@@ -1,0 +1,185 @@
+.btn {
+  &:disabled {
+    @apply !opacity-80 !pointer-events-none !select-none;
+  }
+  & {
+    @apply rounded-medium px-[21px] py-[11px];
+  }
+  &,
+  .btn__text,
+  .svg {
+    @apply duration-200;
+  }
+  .btn__text {
+    @apply text-[14px] leading-[22px] inline-block font-semibold;
+  }
+  &:hover,
+  &:focus {
+    @apply brightness-125;
+    .svg {
+      @apply transform scale-[1.12];
+    }
+  }
+  &.btn--white {
+    @apply bg-white;
+    .btn__text {
+      @apply text-black;
+    }
+  }
+  &.btn--black {
+    @apply bg-black;
+    .btn__text {
+      @apply text-white;
+    }
+  }
+  &.btn--green {
+    @apply bg-green;
+    .btn__text {
+      @apply text-white;
+    }
+    svg path {
+      @apply fill-white;
+    }
+  }
+  &.btn--gray {
+    @apply bg-gray-100;
+    .btn__text {
+      @apply text-black;
+    }
+  }
+  &.btn--red {
+    @apply bg-red;
+    .btn__text {
+      @apply text-white;
+    }
+  }
+  &.btn--orange {
+    @apply bg-orange;
+    &:hover,
+    &:focus {
+      @apply brightness-110;
+    }
+    .btn__text {
+      @apply text-white;
+    }
+    .svg path {
+      @apply fill-white;
+    }
+  }
+  &.btn--white-red {
+    @apply bg-white border-[2px] border-solid border-red;
+    .btn__text {
+      @apply !text-red;
+    }
+    .svg path {
+      @apply fill-red;
+    }
+  }
+  &.btn--white-orange {
+    @apply bg-white border-[2px] border-solid border-orange;
+    &:hover,
+    &:focus {
+      @apply brightness-110;
+    }
+    .btn__text {
+      @apply !text-orange;
+    }
+    .svg path {
+      @apply fill-orange;
+    }
+  }
+  &.btn--white-green {
+    @apply bg-white relative;
+    &::before {
+      content: "";
+      @apply block absolute top-0 left-0 w-full h-full rounded-medium border-[2px] border-solid border-green;
+    }
+    .btn__text {
+      @apply text-green;
+    }
+    .svg path {
+      @apply fill-green;
+    }
+  }
+  .loading-container {
+    @apply p-0 m-0;
+  }
+}
+
+/* Toggle Button */
+/* .filters-subgroup {
+    @apply flex flex-col items-start;
+    span {
+        @apply text-gray-300 font-medium text-[14px] leading-[22px];
+    }
+} */
+
+/* .btn.btn--toggle {
+    @apply w-[48px] h-[24px] p-0 relative mt-[6px];
+    &:hover,
+    &:focus {
+        @apply brightness-[1.02];
+    }
+    &::before {
+        content: "";
+        @apply absolute rounded-full w-full h-full pointer-events-none select-none
+        border-[1px] border-solid left-0 top-0 duration-300;
+    }
+    &:not(.btn--active) {
+        &::before {
+            @apply !border-gray-300;
+        }
+        .slider-circle {
+            @apply !bg-gray-300 opacity-70;
+        }
+    }
+    &.btn--active {
+        @apply opacity-100;
+        .slider-circle {
+            @apply transform translate-x-[24px];
+        }
+    }
+    &.btn--toggle--green {
+        .slider {
+            @apply bg-white;
+        }
+        .slider-circle {
+            @apply bg-green;
+        }
+        &::before {
+            @apply border-green;
+        }
+    }
+    &.btn--toggle--orange {
+        .slider {
+            @apply bg-white;
+        }
+        .slider-circle {
+            @apply bg-orange;
+        }
+        &::before {
+            @apply border-orange;
+        }
+    }
+    &.btn--toggle--neutral {
+        .slider {
+            @apply bg-white;
+        }
+        .slider-circle {
+            @apply bg-[#b3b3b3];
+        }
+        &::before {
+            @apply border-[#b3b3b3];
+        }
+    }
+    .slider,
+    .slider-circle {
+        @apply pointer-events-none select-none;
+    }
+    .slider {
+        @apply bg-red w-full h-full rounded-full flex items-center justify-start p-[4px];
+    }
+    .slider-circle {
+        @apply w-[16px] h-full bg-[blue] rounded-full duration-300;
+    }
+} */
