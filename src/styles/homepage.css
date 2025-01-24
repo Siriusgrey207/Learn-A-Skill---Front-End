@@ -47,7 +47,7 @@
   }
   .section-filters {
     &:not(:first-of-type) {
-      @apply mt-halfSpacing;
+      @apply mt-[20px];
     }
   }
   .section-filters--other-filters,
@@ -59,7 +59,7 @@
   .section-filters--remove-filters {
     @apply pt-halfSpacing border-t-[1px] border-solid border-gray-200;
     .btn--remove-filters {
-      @apply px-3 pb-1.5 pt-1;
+      @apply px-4 py-2;
     }
   }
 }

@@ -1,10 +1,10 @@
 type PanelProps = {
-    className?: string;
-    children: React.ReactNode;
+  className?: string;
+  children: React.ReactNode;
 };
 
 export default function Panel(props: PanelProps) {
-    const { children, className = "" } = props;
+  const { children, className = "" } = props;
 
-    return <div className={`panel ${className}`}>{children}</div>;
+  return <div className={`panel ${className}`}>{children}</div>;
 }

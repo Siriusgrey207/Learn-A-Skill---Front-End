@@ -5,6 +5,7 @@ import Button from "../quarks/Button";
 import UserInfo from "./UserInfo";
 import ReportDropdown from "./DropdownReport";
 import FavoriteButton from "../quarks/FavoriteButton";
+import BookIcon from "../icons/BookIcon";
 // import Dropdown from "./Dropdown";
 // import Select from "../quarks/Select";
 
@@ -29,7 +30,7 @@ function SkillCard({
     userIsPremium,
     userIsInOrganization,
     userImage,
-    skillId,
+    _id: skillId,
     skillName,
     skillImg,
     skillRating,
@@ -43,16 +44,21 @@ function SkillCard({
 
   return (
     <Panel
+      key={skillId}
       className={classNames(
         "skill-card",
         skillIsNew && "skill-card--new",
         skillIsHighlighted && "skill-card--highlighted",
         userIsPremium && "skill-card--userIsPremium"
       )}
-      key={skillId}
     >
-      <div className="skill-card__img">
-        <img src={skillImg} />
+      <div
+        className={classNames(
+          "skill-card__img",
+          skillImg ? "skill-card__img--has-image" : "skill-card__img--no-image"
+        )}
+      >
+        {skillImg ? <img src={skillImg} alt="Lesson image" /> : <BookIcon />}
       </div>
       <div className="skill-card__details">
         <div className="details__price">
@@ -87,7 +93,7 @@ function SkillCard({
           <div className="details__actions">
             <FavoriteButton
               userId={skillDetails.userId}
-              skillId={skillDetails.skillId}
+              skillId={skillDetails._id}
               favoriteSkills={favoriteSkills}
             />
             <ReportDropdown skillDetails={skillDetails} />

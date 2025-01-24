@@ -4,7 +4,9 @@ import { developmentMode } from "./devTools";
 // 1. Add the correct endpoints for the backend for production.
 
 // --- Skill endpoints
-export const getRandomSkills = "https://jsonplaceholder.typicode.com/posts";
+export const getSkills = developmentMode
+  ? "http://localhost:5000/api/v1/skills/get-skills"
+  : "Production Skills Url";
 
 // --- Authentication endpoints
 export const loginUrl = developmentMode

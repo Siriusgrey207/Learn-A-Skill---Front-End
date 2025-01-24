@@ -6,7 +6,8 @@
 
 .skills-list-container {
   @apply mt-spacing gap-spacing grid grid-cols-1;
-  &.skills-list-container--basic {
+  &.skills-list-container--basic,
+  &.skills-list-container--featured {
     @apply mt-0;
   }
 }
@@ -17,14 +18,17 @@
   i {
     @apply inline-block mb-[-1px] !leading-[18px];
   }
+  span {
+    @apply text-[14px] font-normal;
+  }
   i {
     flex: 0 0 4px;
-    @apply w-[4px] h-[4px] rounded-large bg-gray-300;
+    @apply w-[4px] h-[4px] rounded-large bg-gray-300/60;
   }
   .user-info__avatar,
   .avatar {
-    flex: 0 0 25px;
-    @apply w-[25px] h-[25px] rounded-full;
+    flex: 0 0 24px;
+    @apply w-[24px] h-[24px] rounded-full;
   }
   &,
   .user-info__avatar-and-username,
@@ -33,10 +37,13 @@
     @apply flex items-center flex-row h-[25px];
   }
   .user-info__avatar {
-    @apply bg-gray-200 rounded-full;
-    &.user-info__avatar--no-avatar {
-      flex: 0 0 28px;
-      @apply bg-transparent w-[28px] h-[28px];
+    @apply rounded-full;
+    .svg--account {
+      flex: 0 0 24px;
+      @apply w-6 h-6 fill-[#727272];
+      path {
+        @apply fill-[#727272];
+      }
     }
   }
   .user-info__avatar-and-username {
@@ -45,16 +52,11 @@
   .user-info__rating {
     @apply gap-1;
     span {
-      @apply text-orange font-medium;
+      @apply text-orange;
     }
   }
   .svg--stars {
     @apply inline-block mt-[-2px];
-  }
-  .user-info__user-type.user-info__user-type--inOrganization {
-    span {
-      @apply text-orange;
-    }
   }
 }
 
@@ -120,17 +122,25 @@
   }
   .skill-card__img {
     flex: 0 0 230px;
-    @apply w-[230px] min-h-[205px] h-full rounded-l-large overflow-hidden;
+    @apply w-[230px] min-h-[205px] h-full rounded-l-large overflow-hidden flex items-center justify-center
+    border-r-[1px] border-solid border-[#00000026];
+    &.skill-card__img--no-image {
+      @apply bg-[#efefef];
+    }
     img {
       flex: 1 1 auto;
       @apply w-full min-h-[205px] h-full object-cover;
     }
+    .svg--book {
+      flex: 0 0 80px;
+      @apply w-[80px] h-[80px] opacity-[0.15];
+    }
   }
   .details__price {
-    @apply absolute top-[10px] right-[10px] flex items-center
+    @apply absolute top-4 right-4 flex items-center
         justify-center;
     span {
-      @apply text-white text-[22px] font-semibold leading-[30px] relative z-[3] text-green;
+      @apply text-[22px] font-semibold leading-[30px] relative z-[3] text-green;
     }
   }
 }
@@ -210,17 +220,17 @@
 
 .skill-card__details {
   flex: 1 1 auto;
-  @apply p-halfSpacing flex flex-col items-start h-full w-full;
+  @apply p-5 flex flex-col items-start h-full w-full;
   span {
     @apply text-gray-300;
   }
   .details__skill-title,
   .details__skill-description {
-    @apply text-left inline-block mt-1.5;
+    @apply text-left inline-block mt-2.5;
   }
 
   .details__skill-title {
-    @apply text-[17px] leading-[23px] text-black font-semibold;
+    @apply text-[20px] leading-[27px] text-gray-400/80 font-semibold;
   }
 
   .details__skill-description {
@@ -235,10 +245,10 @@
     @apply flex items-center flex-wrap gap-2 pr-4;
   }
   .skill-tag {
-    @apply inline-flex items-center justify-center px-4 pb-[2px] pt-[3px] border-[1px] border-solid 
-        border-gray-300 rounded-large bg-white;
+    @apply inline-flex items-center justify-center px-4 py-1 border-[1px] border-solid 
+        border-gray-300/50 bg-white rounded-[8px];
     &.skill-tag--new {
-      @apply pb-[3px] pt-[3px] pl-2 gap-1 border-orange;
+      @apply pl-2 gap-1 border-orange;
       .svg {
         @apply w-[18px] h-[18px] mt-[-1px];
         path {
@@ -250,19 +260,18 @@
       }
     }
     small {
-      @apply text-[12px] font-normal leading-[19px] inline-block text-gray-300
-            font-medium;
+      @apply text-[14px] font-semibold leading-[20px] inline-block text-gray-300/80;
     }
   }
   .details__skill-tags-and-actions {
-    @apply pt-2 mt-auto flex items-center w-full min-h-[50px];
+    @apply pt-4 mt-auto flex items-end w-full min-h-[50px];
   }
   .details__actions {
-    @apply ml-auto flex items-center gap-[8px];
+    @apply flex items-center gap-[8px] mt-2 ml-auto;
   }
   .btn--see-more,
   .btn--report {
-    @apply px-3.5 py-1.5;
+    @apply px-5 py-2;
     .btn__text {
       @apply whitespace-nowrap;
     }
@@ -281,7 +290,14 @@
     @apply !px-3.5 justify-center;
   }
   .btn--add-to-favorites {
-    @apply p-2;
+    @apply p-1.5;
+    .svg--gray-heart {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px];
+      path {
+        @apply fill-gray-300/80;
+      }
+    }
   }
 }
 
@@ -516,10 +532,4 @@
   }
 }
 
-/* .filters-container {
-    flex: 1 1 auto;
-    @apply w-full mt-spacing;
-}
-.filters-group.filters-group--toggle {
-    @apply grid grid-cols-4 gap-spacing;
-} */
+/* Animations */

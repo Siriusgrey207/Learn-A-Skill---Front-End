@@ -8,7 +8,7 @@ export type SkillTypes = {
   userIsPremium: boolean; // Whether or not the user is verified
   userIsInOrganization: boolean; // Whether or not the user is associated with an organization
   userImage: string | null; // The profile picture of the user
-  skillId: string; // The id of the skill offer that the user is teaching
+  _id: string; // The id of the skill offer that the user is teaching
   skillName: string; // The name/title of the skill that the user is offering
   skillRelevantExperience: string | undefined; // The relevant experience of the user
   skillImg: string; // An image depicting the skill being taught
