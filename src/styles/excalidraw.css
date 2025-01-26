@@ -18,6 +18,10 @@
   text-align: left;
 }
 
+.excalidraw {
+  --default-bg-color: red;
+}
+
 .export-wrapper {
   display: flex;
   flex-direction: column;

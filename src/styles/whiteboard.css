@@ -1,0 +1,22 @@
+.container--whiteboard{
+    @apply max-w-full px-16;
+}
+
+.container--whiteboard .panel__description{
+    @apply mt-4;
+}
+
+.panel--whiteboard{
+    box-shadow: 0 4px 6px 0 #00000017;
+    @apply border-[1px] border-solid border-[#00000026] rounded-lg overflow-hidden;
+}
+
+.excalidraw .ToolIcon_type_button--hide, .excalidraw .Modal .ToolIcon_type_button--hide, .excalidraw .ToolIcon_type_button--hide {
+    display: flex !important;
+}
+
+@media(max-width:650px){
+    .container--whiteboard{
+        @apply px-6;
+    }
+}

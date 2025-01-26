@@ -182,6 +182,8 @@ const LoginAndSignUp: React.FC = () => {
           message: res.data.msg,
           displayDuration: 5000,
         });
+        // LOGIC FOR REDIRECT OR Loading State = False
+
       }
 
       // Login logic
@@ -208,6 +210,8 @@ const LoginAndSignUp: React.FC = () => {
       setError(errorMessage);
       setLoading(false);
     }
+    setLoading(false)
+
   };
 
   // --- Make basic checks of the provided login information.

@@ -9,7 +9,7 @@ const Whiteboard: React.FC = () => {
     <div id="ndzn-app">
       <Header />
       <div className="page-main page-main--whiteboard">
-        <div className="container">
+        <div className="container--whiteboard">
           <div className="page-content page-content--whiteboard">
             <Panel className="panel--whiteboard">
               <h1 className="panel__title">Whiteboard</h1>

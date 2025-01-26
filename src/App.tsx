@@ -13,7 +13,7 @@ import Whiteboard from "./organisms/Whiteboard";
 import ResetPassword from "./organisms/ResetPassword";
 
 const App: React.FC = () => {
-  window.EXCALIDRAW_ASSET_PATH = "/src/assets/excalidraw-assets/";
+  // window.EXCALIDRAW_ASSET_PATH = "/src/assets/excalidraw-assets/";
 
   return (
     <Router>
