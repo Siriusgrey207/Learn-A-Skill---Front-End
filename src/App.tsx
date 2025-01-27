@@ -11,6 +11,7 @@ import LoginAndSignup from "./organisms/LoginAndSignup";
 import VerifyEmail from "./organisms/VerifyEmail";
 import Whiteboard from "./organisms/Whiteboard";
 import ResetPassword from "./organisms/ResetPassword";
+import SkillPage from "./organisms/SkillPage";
 
 const App: React.FC = () => {
   // window.EXCALIDRAW_ASSET_PATH = "/src/assets/excalidraw-assets/";
@@ -29,6 +30,9 @@ const App: React.FC = () => {
         <Route path="/login" element={<LoginAndSignup />} />
         <Route path="/user/verify-email" element={<VerifyEmail />} />
         <Route path="/user/reset-password" element={<ResetPassword />} />
+
+        {/* Single Skill Routes */}
+        <Route path="/skills/:skillId" element={<SkillPage />} />
 
         {/* Whiteboard */}
         <Route path="/whiteboard" element={<Whiteboard />} />

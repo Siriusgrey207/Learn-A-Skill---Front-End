@@ -8,6 +8,10 @@ export const getSkills = developmentMode
   ? "http://localhost:5000/api/v1/skills/get-skills"
   : "Production Skills Url";
 
+export const getSingleSkill = developmentMode
+  ? "http://localhost:5000/api/v1/skills/get-skills"
+  : "Production Single Skill Url";
+
 // --- Authentication endpoints
 export const loginUrl = developmentMode
   ? "http://localhost:5000/api/v1/auth/login"

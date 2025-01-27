@@ -118,11 +118,11 @@ export default function AccountPanel(props: AccountPanelProps) {
                     <div
                       className={classNames(
                         "account__name",
-                        currentUserDetails.isPremium &&
+                        currentUserDetails.userIsPremium &&
                           "account__name--verified"
                       )}
                     >
-                      {currentUserDetails.isPremium && <CheckIcon2 />}
+                      {currentUserDetails.userIsPremium && <CheckIcon2 />}
                       <h2>
                         {currentUserDetails.name} {currentUserDetails.surname}
                       </h2>
@@ -131,9 +131,7 @@ export default function AccountPanel(props: AccountPanelProps) {
                       {currentUserDetails.description}
                     </div>
                     <div className="account__further-details">
-                      <small>
-                        Member since {currentUserDetails.memberSince}
-                      </small>
+                      <small>Member since TO DO</small>
                       <i></i>
                       <small>
                         Teaching {currentUserDetails.numberOfSkillsTaught} skill
@@ -146,13 +144,17 @@ export default function AccountPanel(props: AccountPanelProps) {
                   <div
                     className={classNames(
                       "grid__el status",
-                      userDetails.isPremium && "status--is-verified"
+                      userDetails.userIsPremium && "status--is-verified"
                     )}
                   >
-                    {userDetails.isPremium ? <CheckIcon2 /> : <CloseIcon2 />}
+                    {userDetails.userIsPremium ? (
+                      <CheckIcon2 />
+                    ) : (
+                      <CloseIcon2 />
+                    )}
                     <h6>Status:</h6>
                     <span>
-                      {userDetails.isPremium ? "Verified" : "Not Verified"}
+                      {userDetails.userIsPremium ? "Verified" : "Not Verified"}
                     </span>
                   </div>
                   {userDetails.email.length && (
@@ -218,7 +220,7 @@ export default function AccountPanel(props: AccountPanelProps) {
             </div>
           )}
 
-          {userDetails.isLoggedIn && userDetails.isPremium && <SendEmail />}
+          {userDetails.isLoggedIn && userDetails.userIsPremium && <SendEmail />}
           {displayedComponent === "taughtSkills" && (
             <h1>Skills taught by you</h1>
           )}

@@ -100,7 +100,7 @@ function SkillCard({
             <Button
               type="button"
               className="btn btn--green btn--see-more"
-              onClick={() => console.log("Send the user to the skill page")}
+              onClick={() => window.location.assign(`/skills/${skillId}`)}
             >
               <span className="btn__text">See More</span>
             </Button>
