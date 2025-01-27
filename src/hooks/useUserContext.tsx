@@ -1,6 +1,13 @@
-import React, { createContext, useState, ReactNode, useContext } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  useContext,
+} from "react";
 
-import { fakeGuest, SkillTypes } from "../constants/fakeData";
+import { fakeGuest } from "../constants/fakeData";
+import { api } from "../services/api";
 
 // Define the shape of the context state
 export type UserDetailsTypes = {
@@ -38,6 +45,31 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [userDetails, setUserDetails] = useState<UserDetailsTypes>(fakeGuest);
+
+  // Check user session on app load
+  useEffect(() => {
+    async function fetchUserSession() {
+      try {
+        // Use the custom `api` instance to send the refresh-token request
+        const response = await api.post(
+          "/api/v1/auth/refresh-token",
+          {},
+          { withCredentials: true }
+        );
+        const { user, accessToken } = response.data;
+
+        // Update user details and set the new access token
+        setUserDetails({ ...user, isLoggedIn: true });
+        console.log({ ...user, isLoggedIn: true });
+        api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+      } catch (error) {
+        console.error("Failed to restore user session:", error);
+        setUserDetails(fakeGuest); // Default to logged-out state
+      }
+    }
+
+    fetchUserSession();
+  }, []);
 
   return (
     <UserContext.Provider value={{ userDetails, setUserDetails }}>

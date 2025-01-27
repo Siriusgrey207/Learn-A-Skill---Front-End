@@ -20,6 +20,7 @@ import "./styles/page-donations.css";
 import "./styles/page-promote.css";
 import "./styles/page-account.css";
 import "./styles/page-aboutUs.css";
+import "./styles/page-skillInfo.css";
 import "./styles/excalidraw.css";
 import "./styles/whiteboard.css";
 

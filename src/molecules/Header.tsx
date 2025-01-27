@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import axios from "axios";
+import { api } from "../services/api";
 import { logoutUrl } from "../constants/endpoints";
 
 import Logo from "../quarks/Logo";
@@ -24,7 +24,7 @@ export default function Header() {
   // ----- Handles the logout of the user
   const handleLogout = async () => {
     try {
-      const res = await axios.delete(logoutUrl, { withCredentials: true });
+      const res = await api.delete(logoutUrl, { withCredentials: true });
       if (res.status === 200) {
         console.log("Logout Successfull");
         console.log("Logout Response: ", res);

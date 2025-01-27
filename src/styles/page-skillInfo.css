@@ -1,0 +1,24 @@
+.panel--skill-info {
+  > h3 {
+    @apply text-[24px] font-medium leading-[28px] block text-left text-green mt-3;
+  }
+  .grid-container {
+    @apply mt-5;
+  }
+  .user-info span {
+    @apply text-gray-300/90;
+  }
+  .user-info__rating span {
+    @apply text-orange;
+  }
+  .panel__body,
+  .buttons-container {
+    @apply mt-5;
+  }
+  .buttons-container {
+    @apply flex justify-end;
+  }
+  .btn.btn--green {
+    @apply max-w-[200px] rounded-lg;
+  }
+}

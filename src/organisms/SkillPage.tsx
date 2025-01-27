@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import { api } from "../services/api.js";
 
 import Header from "../molecules/Header";
 import Footer from "../molecules/Footer";
@@ -25,24 +25,23 @@ const SkillPage: React.FC = () => {
     async function getSingleSkillData() {
       if (!skillId) return;
       try {
-        const url = getSingleSkill + "/" + skillId;
-        const res = await axios.get(url);
+        const url = `${getSingleSkill}/${skillId}`; // Construct the URL
+        const res = await api.get(url); // Use the `api` instance instead of `axios`
         const skill = res.data.skill;
         setSkill(skill);
       } catch (error) {
-        if (axios.isAxiosError(error)) {
-          setError(
-            error.response?.data?.msg ||
-              "An unexpected error occurred, please try again later."
-          );
+        if (api.isAxiosError(error)) {
+          setError((error as any).response.data.msg);
         } else {
           setError("An unexpected error occurred, please try again later.");
         }
+      } finally {
+        setLoading(false);
       }
     }
+
     getSingleSkillData();
-    setLoading(false);
-  }, []);
+  }, [skillId]); // Add `skillId` as a dependency
 
   return (
     <div id="ndzn-app">

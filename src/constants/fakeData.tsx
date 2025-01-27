@@ -21,12 +21,13 @@ export type SkillTypes = {
   skillPrice: number; // The price per lesson
   skillCurrencyCode: string; // The currency code
   skillCurrencySymbol: string; // The currency symbol
+  lessonDuration: number; // The duration of the lesson in minutes
 };
 
 // An example data format of a logged in user.
 export const fakeUser = {
   isLoggedIn: true,
-  isPremium: false,
+  userIsPremium: false,
   userId: "123",
   country: "Bulgaria",
   city: "Varna",
@@ -122,7 +123,7 @@ export const fakeGuest = {
   country: "",
   city: "",
   isLoggedIn: false,
-  isPremium: false,
+  userIsPremium: false,
   userIsInOrganization: false,
   email: "",
   name: "",
@@ -130,11 +131,11 @@ export const fakeGuest = {
   userImage: "",
   description: "",
   memberSince: "",
-  verified: false, // Fixed typo from 'verrified' to 'verified'
+  isVerified: false,
   discord: "",
   phone: "",
   skype: "",
-  rating: null,
+  rating: 0,
   numberOfSkillsTaught: 0, // Fixed 'numberOfskillsTaught' to 'numberOfSkillsTaught'
   role: "user",
 };

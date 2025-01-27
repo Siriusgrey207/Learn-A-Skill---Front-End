@@ -183,12 +183,10 @@ const LoginAndSignUp: React.FC = () => {
           displayDuration: 5000,
         });
         // LOGIC FOR REDIRECT OR Loading State = False
-
       }
 
       // Login logic
       if (component === "login" && res.status === 200) {
-        console.log(res.data);
         // Set the login details of the user.
         console.log(res.data.user, "res.data.user");
         if (res.data.user) setUserDetails(res.data.user);
@@ -210,8 +208,7 @@ const LoginAndSignUp: React.FC = () => {
       setError(errorMessage);
       setLoading(false);
     }
-    setLoading(false)
-
+    setLoading(false);
   };
 
   // --- Make basic checks of the provided login information.

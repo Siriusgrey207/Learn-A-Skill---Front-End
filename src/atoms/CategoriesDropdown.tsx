@@ -24,7 +24,6 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
 
   // Global context
   const { userDetails } = useUserContext();
-  // console.log(userDetails, "useRDetails");
 
   // Local State
   const [toggleDD, setToggleDD] = useState<boolean>(false);
