@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { api } from "../services/api";
+import classNames from "classnames";
 import {
-    addSkillToFavoritesUrl,
-    removeSkillFromFavoritesUrl,
+  addSkillToFavoritesUrl,
+  removeSkillFromFavoritesUrl,
 } from "../constants/endpoints";
-import { developmentMode } from "../constants/devTools";
+import { useUserContext } from "../hooks/useUserContext";
+import { useNotificationContext } from "../hooks/useNotificationContext";
 
 import Button from "./Button";
 import GreyHeartIcon from "../icons/GrayHeartIcon";
@@ -12,102 +14,109 @@ import HeartIcon2 from "../icons/HeartIcon2";
 import LoadingComponent from "./LoadingComponent";
 
 type FavoriteButtonTypes = {
-    userId: number | string;
-    skillId: string;
-    favoriteSkills: string[];
+  userId: number | string;
+  skillId: string;
+  favoriteSkills: string[];
 };
 
 export default function FavoriteButton(props: FavoriteButtonTypes) {
-    const { userId, skillId, favoriteSkills } = props;
+  // Props
+  const { skillId } = props;
 
-    // Local State
-    const [isFavorite, setIsFavorite] = useState<boolean>(false);
-    const [loading, setLoading] = useState<boolean>(false);
+  // Global context - This is where we get the favorite skills of the user from.
+  const { userDetails } = useUserContext();
+  const { favoriteSkills } = userDetails;
+  const { setNotification } = useNotificationContext();
 
-    useEffect(() => {
-        if (favoriteSkills.includes(skillId)) {
-            setIsFavorite(true);
-        } else {
-            setIsFavorite(false);
-        }
-    }, [favoriteSkills]);
+  // Local State
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
-    const addSkillToFavorites = async () => {
-        console.log(isFavorite);
-        setLoading(true);
+  useEffect(() => {
+    if (favoriteSkills.includes(skillId)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [favoriteSkills]);
 
-        const dataAndAction = {
-            action: "add",
-            userId: userId,
-            skillId: skillId,
-        };
+  // Handles the addition of a skill from the favorites for a given user.
+  const addSkillToFavorites = async () => {
+    // If the user is not logged in, redirect them to the login page.
+    if (!userDetails.isLoggedIn) window.location.href = "/login";
+    // Ensure the skill id is present.
+    if (!skillId) {
+      console.error("Please provide a skill id.");
+      return;
+    }
+    // Attempt to add the skill id to the favorites of the user.
+    setLoading(true);
+    try {
+      const res = await api.post(addSkillToFavoritesUrl, {
+        newFavoriteSkillId: skillId,
+      });
+      if (res.status === 201) setIsFavorite(true);
+    } catch (error) {
+      console.log(error);
+    }
+    setNotification({
+      show: true,
+      type: "success",
+      message: "Skill added from favorites!",
+      displayDuration: 3500,
+    });
+    // Slightly delay this in order to prevent the user from spamming the button.
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  };
 
-        try {
-            const res = await axios.post(addSkillToFavoritesUrl, dataAndAction);
-            if (developmentMode) {
-                setIsFavorite(!isFavorite);
-            } else {
-                setIsFavorite(res.data);
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            if (developmentMode) {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2000);
-            } else {
-                setLoading(true);
-            }
-        }
-    };
+  // Handles the removal of the skill from favorites for a given user.
+  const removeSkillFromFavorites = async () => {
+    // If the user is not logged in, redirect them to the login page.
+    if (!userDetails.isLoggedIn) window.location.href = "/login";
+    // Ensure the skill id is present.
+    if (!skillId) {
+      console.error("Please provide a skill id.");
+      return;
+    }
+    // Attempt to remove the skill from favorites.
+    setLoading(true);
+    try {
+      const res = await api.delete(removeSkillFromFavoritesUrl + `/${skillId}`);
+      if (res.status === 200) setIsFavorite(false);
+    } catch (error) {
+      console.error(error);
+    }
+    // Announce the removal of the skill from the favorites.
+    setNotification({
+      show: true,
+      type: "danger",
+      message: "Skill removed from favorites!",
+      displayDuration: 3500,
+    });
+    // Slightly delay this in order to prevent the user from spamming the button.
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  };
 
-    const removeSkillFromFavorites = async () => {
-        console.log(isFavorite);
-        setLoading(true);
-
-        const dataAndAction = {
-            action: "remove",
-            userId: userId,
-            skillId: skillId,
-        };
-
-        try {
-            const res = await axios.post(
-                removeSkillFromFavoritesUrl,
-                dataAndAction
-            );
-            if (developmentMode) {
-                setIsFavorite(!isFavorite);
-            } else {
-                setIsFavorite(res.data);
-            }
-        } catch (error) {
-            console.log(error);
-        } finally {
-            if (developmentMode) {
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2000);
-            } else {
-                setLoading(true);
-            }
-        }
-    };
-
-    return (
-        <Button
-            className="btn btn--add-to-favorites"
-            type="button"
-            onClick={
-                isFavorite
-                    ? () => removeSkillFromFavorites()
-                    : () => addSkillToFavorites()
-            }
-        >
-            {!loading && !isFavorite && <GreyHeartIcon />}
-            {!loading && isFavorite && <HeartIcon2 />}
-            {loading && <LoadingComponent size="small" color="#2d6e46" />}
-        </Button>
-    );
+  return (
+    <Button
+      className={classNames(
+        "btn btn--add-to-favorites",
+        loading && "pointer-events-none select-none opacity-80"
+      )}
+      type="button"
+      onClick={
+        isFavorite
+          ? () => removeSkillFromFavorites()
+          : () => addSkillToFavorites()
+      }
+    >
+      {!loading && !isFavorite && <GreyHeartIcon />}
+      {!loading && isFavorite && <HeartIcon2 />}
+      {loading && <LoadingComponent size="small" color="#2d6e46" />}
+    </Button>
+  );
 }

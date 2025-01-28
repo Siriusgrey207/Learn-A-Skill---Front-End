@@ -29,6 +29,7 @@ export type UserDetailsTypes = {
   numberOfSkillsTaught: number;
   role: string;
   isVerified: boolean;
+  favoriteSkills: string[];
 };
 
 // Define the context types
@@ -60,7 +61,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
 
         // Update user details and set the new access token
         setUserDetails({ ...user, isLoggedIn: true });
-        console.log({ ...user, isLoggedIn: true });
         api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       } catch (error) {
         console.error("Failed to restore user session:", error);

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 import { fakeListOfSkills, SkillTypes } from "../constants/fakeData";
@@ -29,6 +30,17 @@ export default function SkillsList() {
   const [skillsList, setSkillsList] = useState<SkillTypes[]>([]);
   const [favoriteSkills, setFavoriteSkills] = useState<string[]>([]);
 
+  // Get the params from the url:
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
+  // URL Params
+  const country = searchParams.get("country");
+  const city = searchParams.get("city");
+  const teacherType = searchParams.get("teacherType");
+  const rating = searchParams.get("rating");
+  const sortBy = searchParams.get("sortBy");
+
   // const [filters, setFilters] = useState<filterTypes>({
   //     verifiedUsers: false,
   //     newOffers: false,
@@ -46,7 +58,15 @@ export default function SkillsList() {
     setLoading(true);
 
     // By default, we want to send the newest skills to the user.
-    const baseReqUrl = `${getSkills}?sortBy=newest`;
+    const baseReqUrl = `${getSkills}?${[
+      country ? `country=${country}` : "",
+      city ? `city=${city}` : "",
+      teacherType ? `teacherType=${teacherType}` : "",
+      rating ? `rating=${rating}` : "",
+      sortBy ? `sortBy=${sortBy}` : "",
+    ]
+      .filter(Boolean) // Remove empty or falsy values
+      .join("&")}`;
 
     try {
       const res = await axios.get(baseReqUrl);
@@ -89,23 +109,27 @@ export default function SkillsList() {
 
       {error && <Error errorMessage={error} />}
 
-      {skillsList.length > 0 && !loading && (
-        <div className="skills-list-container skills-list-container--featured">
-          <h1>Featured</h1>
-          {skillsList.map((skillDetails) => {
-            if (!skillDetails.userIsPremium) return;
-            return (
-              <SkillCard
-                key={skillDetails._id}
-                skillDetails={skillDetails}
-                favoriteSkills={favoriteSkills}
-              />
-            );
-          })}
-        </div>
-      )}
+      {skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
+        0 &&
+        !loading && (
+          <div className="skills-list-container skills-list-container--featured">
+            <h1>Featured</h1>
+            {skillsList.map((skillDetails) => {
+              if (!skillDetails.userIsPremium) return;
+              return (
+                <SkillCard
+                  key={skillDetails._id}
+                  skillDetails={skillDetails}
+                  favoriteSkills={favoriteSkills}
+                />
+              );
+            })}
+          </div>
+        )}
 
-      {!loading && <i></i>}
+      {!loading &&
+        skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
+          0 && <i></i>}
 
       {skillsList.length > 0 && !loading && (
         <div className="skills-list-container skills-list-container--basic">

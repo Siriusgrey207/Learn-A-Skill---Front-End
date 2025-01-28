@@ -138,6 +138,7 @@ export const fakeGuest = {
   rating: 0,
   numberOfSkillsTaught: 0, // Fixed 'numberOfskillsTaught' to 'numberOfSkillsTaught'
   role: "user",
+  favoriteSkills: [],
 };
 
 // A list of skills that the user can choose from

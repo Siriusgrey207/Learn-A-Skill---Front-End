@@ -53,12 +53,14 @@ export const getFavoriteUserSkills =
 export const getUserSkillsUrl = "https://jsonplaceholder.typicode.com/posts";
 
 // --- Add Skill To Favorites
-export const addSkillToFavoritesUrl =
-  "https://jsonplaceholder.typicode.com/posts";
+export const addSkillToFavoritesUrl = developmentMode
+  ? "http://localhost:5000/api/v1/favorite-lessons/add-favorite-lesson"
+  : "Production Url";
 
 // --- Remove Skill From Favorites
-export const removeSkillFromFavoritesUrl =
-  "https://jsonplaceholder.typicode.com/posts";
+export const removeSkillFromFavoritesUrl = developmentMode
+  ? "http://localhost:5000/api/v1/favorite-lessons/remove-favorite-lesson"
+  : "Production Url";
 
 // --- Save upcoming lesson reminder
 export const saveNewLessonUrl = "https://jsonplaceholder.typicode.com/posts";

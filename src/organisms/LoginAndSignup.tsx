@@ -188,7 +188,6 @@ const LoginAndSignUp: React.FC = () => {
       // Login logic
       if (component === "login" && res.status === 200) {
         // Set the login details of the user.
-        console.log(res.data.user, "res.data.user");
         if (res.data.user) setUserDetails(res.data.user);
         // Redirect to the home page
         navigate("/");
