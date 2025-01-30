@@ -63,7 +63,8 @@ function SkillCard({
       <div className="skill-card__details">
         <div className="details__price">
           <span>
-            {skillPrice} {skillCurrencySymbol}
+            {skillPrice}
+            {skillCurrencySymbol} / lesson
           </span>
         </div>
         <UserInfo

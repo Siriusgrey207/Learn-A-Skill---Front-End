@@ -13,7 +13,10 @@ api.interceptors.response.use(
   (response) => response,
   // In the case the access token has expired, we should get a 401 (unauthorized)
   async (error) => {
-    if (error.response?.status === 401) {
+    if (
+      error.response?.status === 401 &&
+      window.location.pathname !== "/login"
+    ) {
       try {
         const url = developmentMode
           ? "http://localhost:5000/api/v1/auth/refresh-token" // Refresh token endpoint for dev
@@ -31,7 +34,6 @@ api.interceptors.response.use(
         error.config.headers["Authorization"] = `Bearer ${accessToken}`;
         return axios.request(error.config);
       } catch (refreshError) {
-        // If the refresh token has expired, we redirect the user to the login page.
         console.error("Token refresh failed", refreshError);
       }
     }

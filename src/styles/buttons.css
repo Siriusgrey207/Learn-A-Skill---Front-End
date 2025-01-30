@@ -3,7 +3,7 @@
     @apply !opacity-80 !pointer-events-none !select-none;
   }
   & {
-    @apply rounded-medium px-[21px] py-[11px];
+    @apply rounded-small px-[21px] py-[11px];
   }
   &,
   .btn__text,
@@ -11,7 +11,7 @@
     @apply duration-200;
   }
   .btn__text {
-    @apply text-[14px] leading-[22px] inline-block font-semibold;
+    @apply text-[14px] leading-[22px] inline-block font-medium;
   }
   &:hover,
   &:focus {
@@ -33,7 +33,7 @@
     }
   }
   &.btn--green {
-    @apply bg-green;
+    @apply bg-green border-b-[4px] border-solid border-[#1d5934];
     .btn__text {
       @apply text-white;
     }
@@ -48,7 +48,7 @@
     }
   }
   &.btn--red {
-    @apply bg-red;
+    @apply bg-red border-b-[4px] border-solid border-[#cb4a4a];
     .btn__text {
       @apply text-white;
     }

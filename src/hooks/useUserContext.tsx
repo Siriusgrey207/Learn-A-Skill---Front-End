@@ -63,8 +63,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
         setUserDetails({ ...user, isLoggedIn: true });
         api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
       } catch (error) {
-        console.error("Failed to restore user session:", error);
-        setUserDetails(fakeGuest); // Default to logged-out state
+        // If the user session was unable to be restored we default to the logged-out stat.
+        setUserDetails(fakeGuest);
       }
     }
 

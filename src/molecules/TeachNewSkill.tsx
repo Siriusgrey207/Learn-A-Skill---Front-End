@@ -299,7 +299,7 @@ const TeachNewSkill: React.FC<TeachNewSkillTypes> = (props) => {
                 }
               />
             </div>
-            <div className="form-group form-group--relevantExperience">
+            <div className="form-group form-group--categories">
               <label>Categories*</label>
               <CategoriesDropdown
                 updateSkillTags={updateSkillTags}

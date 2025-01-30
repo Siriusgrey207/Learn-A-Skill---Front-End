@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import classNames from "classnames";
 import axios from "axios";
+import { fetchCountries, fetchCities } from "../services";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../molecules/Header";
@@ -16,14 +17,9 @@ import LoadingComponent from "../quarks/LoadingComponent";
 import Info from "../quarks/Info";
 import ForgotPassword from "../molecules/ForgotPassword";
 
-// import CheckIcon from "../icons/CheckIcon";
-
 import { loginUrl, registerUrl } from "../constants/endpoints";
-// import { developmentMode } from "../constants/devTools";
 import { useUserContext } from "../hooks/useUserContext";
-// import { fakeUser } from "../constants/fakeData";
 import isValidEmail from "../helperFunctions/isValidEmail";
-import sortStringsAlphabetically from "../helperFunctions/sortStringsAlphabetically";
 import { useNotificationContext } from "../hooks/useNotificationContext";
 import Notification from "../quarks/Notification";
 
@@ -84,49 +80,29 @@ const LoginAndSignUp: React.FC = () => {
 
   // Get a list of all countries in the world
   useEffect(() => {
-    const fetchCountries = async () => {
-      // setLoading(true);
-      const response = await fetch("https://restcountries.com/v3.1/all");
-      const data = await response.json();
-      const orderedCountries = sortStringsAlphabetically(
-        data.map((country: any) => country.name.common)
-      );
-      setCountries(orderedCountries);
+    const handleCountries = async () => {
+      setLoading(true);
+      const countries = await fetchCountries();
+      if (countries) setCountries(countries);
       setLoading(false);
     };
-    fetchCountries();
+    handleCountries();
   }, []);
   //
 
   // Based on the selected country, get a list of all cities in that country.
   useEffect(() => {
-    const fetchCities = async () => {
-      // setLoading(true);
-      if (!registrationDetails.country) return;
-      const url = "https://countriesnow.space/api/v0.1/countries/cities";
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            country: registrationDetails.country,
-          }),
-        });
-        const data = await response.json();
-        setCities(data.data);
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false);
-      }
+    const handleCities = async () => {
+      setLoading(true);
+      const cities = await fetchCities(registrationDetails?.country || "");
+      if (cities) setCities(cities);
+      setLoading(false);
     };
-
-    fetchCities();
+    if (registrationDetails.country) handleCities();
   }, [registrationDetails.country]); // Whenever the country changes, get the cities for that country.
   //
 
+  // Clean up function for the state.
   const cleanup = () => {
     setLoginDetails({ email: "", password: "" });
     setRegistrationDetails({
@@ -144,6 +120,7 @@ const LoginAndSignUp: React.FC = () => {
       setError("");
     }, 3000);
   };
+  //
 
   // --- The function that handles the submission details for both the login and register components.
   const handleFormSubmission = async (event: React.FormEvent) => {

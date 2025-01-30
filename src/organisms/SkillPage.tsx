@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../services/api.js";
+import { api } from "../services/api.ts";
+import axios from "axios";
 
 import Header from "../molecules/Header";
 import Footer from "../molecules/Footer";
@@ -30,8 +31,8 @@ const SkillPage: React.FC = () => {
         const skill = res.data.skill;
         setSkill(skill);
       } catch (error) {
-        if (api.isAxiosError(error)) {
-          setError((error as any).response.data.msg);
+        if (axios.isAxiosError(error) && error?.response?.data?.msg) {
+          setError(error.response.data.msg);
         } else {
           setError("An unexpected error occurred, please try again later.");
         }

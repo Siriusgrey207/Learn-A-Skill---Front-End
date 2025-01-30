@@ -1,4 +1,7 @@
 .skills-list {
+  .error-message {
+    @apply mt-0;
+  }
   > i {
     @apply w-full h-[2px] bg-gray-200 my-spacing;
   }
@@ -13,7 +16,7 @@
 }
 
 .user-info {
-  @apply gap-2;
+  @apply gap-2 pr-[140px];
   span,
   i {
     @apply inline-block mb-[-1px] !leading-[18px];
@@ -52,7 +55,7 @@
   .user-info__rating {
     @apply gap-1;
     span {
-      @apply text-orange;
+      @apply text-orange font-semibold;
     }
   }
   .svg--stars {
@@ -137,10 +140,9 @@
     }
   }
   .details__price {
-    @apply absolute top-4 right-4 flex items-center
-        justify-center;
+    @apply absolute top-4 right-4 flex items-center justify-center bg-black/60 rounded-small px-2 py-1;
     span {
-      @apply text-[22px] font-semibold leading-[30px] relative z-[3] text-green;
+      @apply text-[18px] font-medium leading-[26px] relative z-[3] !text-white;
     }
   }
 }

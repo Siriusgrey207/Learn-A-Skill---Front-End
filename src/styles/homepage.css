@@ -30,6 +30,18 @@
   }
 }
 
+.panel--not-found {
+  @apply flex flex-col items-center;
+  svg {
+    flex: 0 0 100px;
+    animation: 7s rotateNotFound infinite ease;
+    @apply w-[100px] h-[100px];
+  }
+  b {
+    @apply text-center text-[16px] leading-[23px] inline-block font-bold text-[#939393] mt-6;
+  }
+}
+
 .panel--sidebarFilters {
   .btn--other-filter {
     box-shadow: 0 2px 2px 0 #0000001a;
@@ -43,6 +55,11 @@
       path {
         @apply fill-[#595959];
       }
+    }
+  }
+  .section-error {
+    .error-message {
+      @apply mt-0;
     }
   }
   .section-filters {
@@ -88,4 +105,14 @@
 
 .buttonsContainer {
   @apply flex items-center gap-2 flex-wrap;
+}
+
+@keyframes rotateNotFound {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-30deg) translate(3px, 3px) scale(1.2);
+  }
 }

@@ -131,6 +131,9 @@ select {
   box-shadow: 0 2px 2px 0 #0000001a;
   @apply rounded-medium text-gray-300 outline-none py-3 min-h-[50px] pl-[18px] pr-[60px] w-full
     cursor-pointer font-bold text-[14px] appearance-none;
+  &.select--disabled {
+    @apply opacity-70;
+  }
 }
 
 /* Forgot Password */
