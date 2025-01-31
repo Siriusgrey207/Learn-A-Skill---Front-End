@@ -156,7 +156,7 @@ a {
   @apply p-6 w-[320px] relative;
   &::before {
     content: "";
-    @apply block absolute w-[2px] h-full bg-[#0000004d] rounded-medium top-0 right-[-31px];
+    @apply block absolute w-[2px] h-full bg-[#e0e0e0] rounded-medium top-0 right-[-31px];
   }
   .nav-link {
     @apply gap-3 px-3 py-[13px];

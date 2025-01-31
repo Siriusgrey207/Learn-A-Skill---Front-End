@@ -73,18 +73,26 @@ export default function FiltersPanel() {
 
   // Change the query string upon filter change
   useEffect(() => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams); // Preserve existing params
 
     if (filters.country) params.set("country", filters.country);
+    else params.delete("country");
+
     if (filters.city) params.set("city", filters.city);
+    else params.delete("city");
+
     if (filters.teacherType) params.set("teacherType", filters.teacherType);
+    else params.delete("teacherType");
+
     if (filters.sortBy) params.set("sortBy", filters.sortBy);
+    else params.delete("sortBy");
+
     if (filters.minRating > 0)
       params.set("rating", filters.minRating.toString());
+    else params.delete("rating");
 
-    // ✅ Use React Router's setSearchParams instead of window.history.replaceState
     setSearchParams(params);
-  }, [filters, searchParams]);
+  }, [filters]);
 
   // --- Methods ---
 
@@ -207,7 +215,7 @@ export default function FiltersPanel() {
               className="btn btn--red btn--remove-filters"
               onClick={removeAllFilters}
             >
-              <span className="btn__text">Remove All Filters</span>
+              <span className="btn__text">Remove Filters</span>
             </button>
           </div>
         </section>

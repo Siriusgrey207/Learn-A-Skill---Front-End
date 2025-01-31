@@ -15,8 +15,8 @@ type CategoriesDropdownTypes = {
   mode: "search" | "select"; // Search should be the default. Select is for forms (e.g. new skill submission.)
 };
 // If the mode is set to "select", we want to check if the user is premium or not.
-//   If the user is not premium, limit to 2 selected categories.
-//   If the user is premium, limit to 5 selected categories.
+// If the user is not premium, limit to 2 selected categories.
+// If the user is premium, limit to 5 selected categories.
 
 export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
   // Props
@@ -139,6 +139,7 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
                                 ...prev,
                                 subcategory,
                               ]);
+                              setFilter("");
                             }
                             // setToggleDD(false); // Close dropdown after selection
                           }}
@@ -167,7 +168,6 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
                 setSelectedCategories((prev) =>
                   prev.filter((item) => item !== category)
                 );
-                console.log(`Removed category: ${category}`);
               }}
             >
               <CloseIcon />

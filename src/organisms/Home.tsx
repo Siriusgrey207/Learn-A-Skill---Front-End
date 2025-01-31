@@ -3,6 +3,7 @@ import Footer from "../molecules/Footer";
 import PageSidebar from "../molecules/PageSidebar";
 import SkillsList from "../molecules/SkillsList";
 import Notification from "../quarks/Notification";
+import SelectTagsPanel from "../molecules/SelectTagsPanel";
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
           <PageSidebar />
 
           <div className="page-content">
+            <SelectTagsPanel />
             <SkillsList />
           </div>
         </div>

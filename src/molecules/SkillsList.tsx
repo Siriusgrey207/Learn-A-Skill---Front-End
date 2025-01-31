@@ -8,6 +8,7 @@ import LoadingComponent from "../quarks/LoadingComponent";
 import SkillCard from "../atoms/SkillCard";
 import Error from "../quarks/Error";
 import NotFound from "../quarks/NotFound";
+import shuffleArray from "../helperFunctions/shuffleArray";
 
 export default function SkillsList() {
   const { userDetails } = useUserContext();
@@ -38,9 +39,11 @@ export default function SkillsList() {
 
   // 🚀 Run getSkillsList when the URL query parameters change
   useEffect(() => {
-    console.log(location.search);
     getSkillsList();
-  }, [searchParams]); // ✅ Re-run when `location.search` changes
+  }, [searchParams]); // Re-run when `location.search` changes
+
+  const premiumSkills = skillsList.filter((skill) => skill.userIsPremium);
+  const shuffledPremiumSkills = shuffleArray(premiumSkills);
 
   return (
     <div className="skills-list">
@@ -53,28 +56,26 @@ export default function SkillsList() {
       {/* Not Found */}
       {!error && !loading && skillsList.length === 0 && <NotFound />}
 
+      {/* The premium skills at the top */}
       {skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
         0 &&
         !loading && (
           <div className="skills-list-container skills-list-container--featured">
             <h1>Featured</h1>
-            {skillsList.map((skillDetails) => {
-              if (!skillDetails.userIsPremium) return;
-              return (
-                <SkillCard
-                  key={skillDetails._id}
-                  skillDetails={skillDetails}
-                  favoriteSkills={favoriteSkills}
-                />
-              );
-            })}
+            {shuffledPremiumSkills.map((skillDetails) => (
+              <SkillCard
+                key={skillDetails._id}
+                skillDetails={skillDetails}
+                favoriteSkills={favoriteSkills}
+              />
+            ))}
           </div>
         )}
 
-      {!loading &&
-        skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
-          0 && <i></i>}
+      {/* The line separating the premium skills and the regular skills */}
+      {!loading && shuffledPremiumSkills.length > 0 && <i></i>}
 
+      {/* The list of regular skills */}
       {skillsList.length > 0 && (
         <div className="skills-list-container skills-list-container--basic">
           {skillsList.map((skill) => (
@@ -89,29 +90,3 @@ export default function SkillsList() {
     </div>
   );
 }
-
-// {loading && <LoadingComponent size="large" color="#2D6E46" />}
-
-//       {error && <Error errorMessage={error} />}
-
-//       {skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
-//         0 &&
-//         !loading && (
-//           <div className="skills-list-container skills-list-container--featured">
-//             <h1>Featured</h1>
-//             {skillsList.map((skillDetails) => {
-//               if (!skillDetails.userIsPremium) return;
-//               return (
-//                 <SkillCard
-//                   key={skillDetails._id}
-//                   skillDetails={skillDetails}
-//                   favoriteSkills={favoriteSkills}
-//                 />
-//               );
-//             })}
-//           </div>
-//         )}
-
-//       {!loading &&
-//         skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
-//           0 && <i></i>}

@@ -81,6 +81,19 @@
   }
 }
 
+.panel--select-search-tags {
+  @apply flex flex-col items-start gap-halfSpacing;
+  .panel__body {
+    @apply w-full block;
+  }
+  .categories-dropdown {
+    @apply mt-3;
+  }
+  .tags-container > span {
+    @apply text-gray-300;
+  }
+}
+
 .rating-filter {
   @apply inline-flex items-center -ml-1 mt-1;
   .btn--star {
