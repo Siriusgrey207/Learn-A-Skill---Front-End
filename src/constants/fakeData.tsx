@@ -22,6 +22,7 @@ export type SkillTypes = {
   skillCurrencyCode: string; // The currency code
   skillCurrencySymbol: string; // The currency symbol
   lessonDuration: number; // The duration of the lesson in minutes
+  surname: string;
 };
 
 // An example data format of a logged in user.

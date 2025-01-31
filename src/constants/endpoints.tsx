@@ -43,7 +43,9 @@ export const getScheduledLessonsUrl =
 
 // --- Report User Or Skill
 export const reportUserUrl = "https://jsonplaceholder.typicode.com/posts";
-export const reportSkillUrl = "https://jsonplaceholder.typicode.com/posts";
+export const reportSkillUrl = developmentMode
+  ? "http://localhost:5000/api/v1/report/report-skill"
+  : "https://jsonplaceholder.typicode.com/posts";
 
 // --- Get the favorite skills of the user
 export const getFavoriteUserSkills =

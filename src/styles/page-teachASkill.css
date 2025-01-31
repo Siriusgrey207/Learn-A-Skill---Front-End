@@ -1,175 +1,175 @@
 .panel--teachASkill {
-    p,
-    h4 {
-        @apply mt-halfSpacing;
-    }
+  p,
+  h4 {
+    @apply mt-halfSpacing;
+  }
 }
 
 .panel--teachASkill {
-    .tags-container {
-        @apply flex items-center flex-wrap gap-2.5;
-        > p {
-            @apply mt-0;
-        }
-        .tag {
-            @apply border-[1px] border-solid border-gray-300 px-4 pb-[1px] rounded-[16px] bg-white;
-            span {
-                @apply text-gray-300 text-[12px] leading-[17px] inline-block font-normal mt-[-1px];
-            }
-        }
+  .tags-container {
+    @apply flex items-center flex-wrap gap-2.5;
+    > p {
+      @apply mt-0;
     }
+    .tag {
+      @apply border-[1px] border-solid border-gray-300 px-4 pb-[1px] rounded-[16px] bg-white;
+      span {
+        @apply text-gray-300 text-[12px] leading-[17px] inline-block font-normal mt-[-1px];
+      }
+    }
+  }
 }
 
 .feature-buttons {
-    @apply grid grid-cols-2 gap-halfSpacing;
-    .btn {
-        @apply flex items-center gap-2.5 py-2 justify-center;
-        &.btn--white-green {
-            .svg path {
-                @apply fill-green;
-            }
-        }
+  @apply grid grid-cols-2 gap-halfSpacing;
+  .btn {
+    @apply flex items-center gap-2.5 py-2 justify-center;
+    &.btn--white-green {
+      .svg path {
+        @apply fill-green;
+      }
     }
+  }
 }
 
 .panel--scheduleALesson {
-    .scheduleALesson__noLessons {
-        @apply flex items-center flex-col justify-center;
-    }
-    .btn--scheduleALesson {
-        @apply flex items-center gap-2.5 px-[52px] mt-halfSpacing;
-    }
-    .loading-container {
-        @apply mt-0;
-    }
-    .error-message {
-        @apply mt-0;
-    }
+  .scheduleALesson__noLessons {
+    @apply flex items-center flex-col justify-center;
+  }
+  .btn--scheduleALesson {
+    @apply flex items-center gap-2.5 px-[52px] mt-halfSpacing;
+  }
+  .loading-container {
+    @apply mt-0;
+  }
+  .error-message {
+    @apply mt-0;
+  }
 }
 
 .scheduleALesson__lessons {
-    @apply grid grid-cols-2 gap-spacing;
+  @apply grid grid-cols-2 gap-spacing;
 }
 
 .panel--lesson {
-    @apply grid grid-cols-2 gap-spacing relative;
-    .btn--cancel {
-        flex: 0 0 36px;
-        @apply absolute top-[-10px] right-[-10px] w-[36px] h-[36px] p-2 flex items-center justify-center;
-    }
+  @apply grid grid-cols-2 gap-spacing relative;
+  .btn--cancel {
+    flex: 0 0 36px;
+    @apply absolute top-[-10px] right-[-10px] w-[36px] h-[36px] p-2 flex items-center justify-center;
+  }
 }
 
 .lesson-info-group {
-    &.lesson-info-group--further-details {
-        @apply col-span-2;
+  &.lesson-info-group--further-details {
+    @apply col-span-2;
+  }
+  h6 {
+    @apply flex items-center gap-2.5;
+    svg {
+      flex: 0 0 28px;
+      @apply w-[28px] h-[28px];
+      path {
+        @apply fill-green;
+      }
     }
-    h6 {
-        @apply flex items-center gap-2.5;
-        svg {
-            flex: 0 0 28px;
-            @apply w-[28px] h-[28px];
-            path {
-                @apply fill-green;
-            }
-        }
-        span {
-            @apply text-[17px] leading-[23px] font-medium inline-block text-green;
-        }
+    span {
+      @apply text-[17px] leading-[23px] font-medium inline-block text-green;
     }
-    p {
-        @apply text-[14px] leading-[22px] block text-left text-gray-300 mt-2.5;
-    }
+  }
+  p {
+    @apply text-[14px] leading-[22px] block text-left text-gray-300 mt-2.5;
+  }
 }
 
 .form--addNewLesson {
-    @apply grid grid-cols-2 gap-spacing mt-spacing;
-    .input {
-        @apply w-full;
+  @apply grid grid-cols-2 gap-spacing mt-spacing;
+  .input {
+    @apply w-full;
+  }
+  .input-container {
+    @apply mt-halfSpacing;
+  }
+  .btn--submitNewLesson {
+    @apply flex items-center justify-center gap-3 col-span-2;
+    svg {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px];
     }
-    .input-container {
-        @apply mt-halfSpacing;
-    }
-    .btn--submitNewLesson {
-        @apply flex items-center justify-center gap-3 col-span-2;
-        svg {
-            flex: 0 0 24px;
-            @apply w-[24px] h-[24px];
-        }
-    }
-    .form-group--buttons {
-        @apply grid grid-cols-2 col-span-2 gap-spacing w-full;
-    }
+  }
+  .form-group--buttons {
+    @apply grid grid-cols-2 col-span-2 gap-spacing w-full;
+  }
 }
 
 .panel--addNewLesson {
-    @apply relative;
-    .btn--cancel {
-        flex: 0 0 36px;
-        @apply absolute top-[-12px] right-[-12px] p-0 w-[36px] h-[36px] flex items-center justify-center;
-    }
+  @apply relative;
+  .btn--cancel {
+    flex: 0 0 36px;
+    @apply absolute top-[-12px] right-[-12px] p-0 w-[36px] h-[36px] flex items-center justify-center;
+  }
 }
 
 .panel--pleaseLogin,
 .panel--noTaughtSkills {
-    h6,
-    a {
-        @apply text-[17px] leading-[24px];
-    }
-    a {
-        @apply underline;
-    }
+  h6,
+  a {
+    @apply text-[17px] leading-[24px];
+  }
+  a {
+    @apply underline;
+  }
 }
 
 .panel--noTaughtSkills {
-    &,
-    .btn--teachASkill {
-        @apply flex items-center;
+  &,
+  .btn--teachASkill {
+    @apply flex items-center;
+  }
+  .btn--teachASkill {
+    @apply ml-auto gap-2 pl-[13px];
+    span {
+      @apply mb-[-1px] inline-block;
     }
-    .btn--teachASkill {
-        @apply ml-auto gap-2 pl-[13px];
-        span {
-            @apply mb-[-1px] inline-block;
-        }
-        .svg {
-            @apply mt-[-1px];
-        }
+    .svg {
+      @apply mt-[-1px];
     }
+  }
 }
 
 .panel.panel--loginWarning {
+  @apply flex items-center;
+  &,
+  .buttons {
     @apply flex items-center;
-    &,
-    .buttons {
-        @apply flex items-center;
-    }
-    .buttons {
-        @apply ml-auto h-[44px];
-    }
+  }
+  .buttons {
+    @apply ml-auto h-[44px];
+  }
 }
 
 .panel.panel--successfulSkillSubmission {
-    p,
-    b {
-        @apply text-[18px] leading-[28px] font-medium block text-left mt-halfSpacing;
+  p,
+  b {
+    @apply text-[18px] leading-[28px] font-medium block text-left mt-halfSpacing;
+  }
+  b {
+    @apply text-orange;
+  }
+  .buttons,
+  .buttons > .btn {
+    @apply flex items-center;
+  }
+  .buttons {
+    @apply gap-halfSpacing mt-spacing;
+    .btn {
+      @apply pl-4 pr-5 py-2 h-[46px];
+      .svg {
+        flex: 0 0 28px;
+        @apply w-[28px] h-[28px] mt-[-2px];
+      }
+      span {
+        @apply inline-block ml-2 text-[17px] leading-[28px] mt-[-3px];
+      }
     }
-    b {
-        @apply text-orange;
-    }
-    .buttons,
-    .buttons > .btn {
-        @apply flex items-center;
-    }
-    .buttons {
-        @apply gap-halfSpacing mt-spacing;
-        .btn {
-            @apply pl-4 pr-5 py-2 h-[46px];
-            .svg {
-                flex: 0 0 28px;
-                @apply w-[28px] h-[28px] mt-[-2px];
-            }
-            span {
-                @apply inline-block ml-2 text-[17px] leading-[28px] mt-[-3px];
-            }
-        }
-    }
+  }
 }

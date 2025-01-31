@@ -3,7 +3,7 @@
     @apply mt-0;
   }
   > i {
-    @apply w-full h-[2px] bg-gray-200 my-spacing;
+    @apply w-full h-[1px] bg-gray-200 my-spacing;
   }
 }
 
@@ -140,7 +140,7 @@
     }
   }
   .details__price {
-    @apply absolute top-4 right-4 flex items-center justify-center bg-black/60 rounded-small px-2 py-1;
+    @apply absolute top-4 right-4 flex items-center justify-center bg-black/50 rounded-small px-2 py-1;
     span {
       @apply text-[18px] font-medium leading-[26px] relative z-[3] !text-white;
     }
@@ -379,9 +379,9 @@
     @apply mt-0 gap-[10px];
   }
   .tag {
-    @apply px-4 py-1 border-[1px] border-solid border-gray-300 bg-white rounded-[16px];
+    @apply px-4 py-1 border-[1px] border-solid border-gray-300 bg-white rounded-[8px] flex items-center flex-nowrap;
     .btn__text {
-      @apply text-[12px] leading-[20px] inline-block font-medium text-gray-300;
+      @apply text-[14px] leading-[20px] inline-block font-semibold text-gray-300;
     }
     .svg--close {
       flex: 0 0 10px;
