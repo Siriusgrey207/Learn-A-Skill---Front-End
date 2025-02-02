@@ -4,10 +4,13 @@ import axios from "axios";
 import { SkillTypes } from "../constants/fakeData";
 import { getSkills } from "../constants/endpoints";
 import { useUserContext } from "../hooks/useUserContext";
+
 import LoadingComponent from "../quarks/LoadingComponent";
 import SkillCard from "../atoms/SkillCard";
 import Error from "../quarks/Error";
 import NotFound from "../quarks/NotFound";
+import Pagination from "../atoms/Pagination";
+
 import shuffleArray from "../helperFunctions/shuffleArray";
 
 export default function SkillsList() {
@@ -24,7 +27,9 @@ export default function SkillsList() {
   const getSkillsList = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${getSkills}?${searchParams.toString()}`);
+      const res = await axios.get(
+        `${getSkills}?${searchParams.toString()}&limit=3`
+      );
       const skills = res.data?.skills || [];
       setSkillsList(skills);
     } catch (error) {
@@ -46,47 +51,50 @@ export default function SkillsList() {
   const shuffledPremiumSkills = shuffleArray(premiumSkills);
 
   return (
-    <div className="skills-list">
-      {/* Loading component */}
-      {loading && <LoadingComponent size="large" color="#2D6E46" />}
+    <div className="items-container">
+      <div className="skills-list">
+        {/* Loading component */}
+        {loading && <LoadingComponent size="large" color="#2D6E46" />}
 
-      {/* Error component */}
-      {error && !loading && <Error errorMessage={error} />}
+        {/* Error component */}
+        {error && !loading && <Error errorMessage={error} />}
 
-      {/* Not Found */}
-      {!error && !loading && skillsList.length === 0 && <NotFound />}
+        {/* Not Found */}
+        {!error && !loading && skillsList.length === 0 && <NotFound />}
 
-      {/* The premium skills at the top */}
-      {skillsList.filter((skillDetails) => skillDetails.userIsPremium).length >
-        0 &&
-        !loading && (
-          <div className="skills-list-container skills-list-container--featured">
-            <h1>Featured</h1>
-            {shuffledPremiumSkills.map((skillDetails) => (
+        {/* The premium skills at the top */}
+        {skillsList.filter((skillDetails) => skillDetails.userIsPremium)
+          .length > 0 &&
+          !loading && (
+            <div className="skills-list-container skills-list-container--featured">
+              <h1>Featured</h1>
+              {shuffledPremiumSkills.map((skillDetails) => (
+                <SkillCard
+                  key={skillDetails._id}
+                  skillDetails={skillDetails}
+                  favoriteSkills={favoriteSkills}
+                />
+              ))}
+            </div>
+          )}
+
+        {/* The line separating the premium skills and the regular skills */}
+        {!loading && shuffledPremiumSkills.length > 0 && <i></i>}
+
+        {/* The list of regular skills */}
+        {skillsList.length > 0 && (
+          <div className="skills-list-container skills-list-container--basic">
+            {skillsList.map((skill) => (
               <SkillCard
-                key={skillDetails._id}
-                skillDetails={skillDetails}
+                key={skill._id}
+                skillDetails={skill}
                 favoriteSkills={favoriteSkills}
               />
             ))}
           </div>
         )}
-
-      {/* The line separating the premium skills and the regular skills */}
-      {!loading && shuffledPremiumSkills.length > 0 && <i></i>}
-
-      {/* The list of regular skills */}
-      {skillsList.length > 0 && (
-        <div className="skills-list-container skills-list-container--basic">
-          {skillsList.map((skill) => (
-            <SkillCard
-              key={skill._id}
-              skillDetails={skill}
-              favoriteSkills={favoriteSkills}
-            />
-          ))}
-        </div>
-      )}
+      </div>
+      <Pagination />
     </div>
   );
 }

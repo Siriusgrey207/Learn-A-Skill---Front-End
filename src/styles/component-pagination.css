@@ -1,0 +1,18 @@
+.pagination {
+  @apply flex items-center justify-center mt-spacing gap-2.5;
+  .btn {
+    flex: 0 0 44px;
+    @apply px-2 pt-2 pb-1.5 flex items-center justify-center w-[44px] h-[44px];
+  }
+  .btn--gray2 {
+    svg {
+      flex: 0 0 24px;
+      @apply w-[24px] h-[24px] fill-gray-300;
+    }
+  }
+  .btn--green {
+    svg {
+      @apply fill-green;
+    }
+  }
+}

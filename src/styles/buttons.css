@@ -15,7 +15,7 @@
   }
   &:hover,
   &:focus {
-    @apply brightness-125;
+    @apply brightness-110;
     .svg {
       @apply transform scale-[1.12];
     }
@@ -45,6 +45,16 @@
     @apply bg-gray-100;
     .btn__text {
       @apply text-black;
+    }
+  }
+  &.btn--gray2 {
+    @apply bg-[#ebebeb] border-b-[4px] border-solid border-gray-200 rounded-md;
+    &:hover,
+    &:focus {
+      @apply brightness-[1.02];
+    }
+    .btn__text {
+      @apply text-gray-300 font-medium text-[16px] inline-block;
     }
   }
   &.btn--red {

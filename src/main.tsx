@@ -23,6 +23,7 @@ import "./styles/page-aboutUs.css";
 import "./styles/page-skillInfo.css";
 import "./styles/excalidraw.css";
 import "./styles/whiteboard.css";
+import "./styles/component-pagination.css";
 
 // Set Excalidraw asset path
 window.EXCALIDRAW_ASSET_PATH = "/assets/excalidraw-assets/";
