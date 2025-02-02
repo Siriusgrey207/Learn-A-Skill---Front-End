@@ -356,7 +356,7 @@
 }
 
 .categories-dropdown {
-  @apply flex items-start flex-wrap gap-halfSpacing;
+  @apply relative z-[3] flex items-start flex-wrap gap-halfSpacing;
   .categories-container {
     @apply relative w-full;
   }

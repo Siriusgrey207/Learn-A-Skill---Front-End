@@ -41,6 +41,21 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
     setFilter(value);
   };
 
+  // Add category to the list of categories.
+  const addCategory = (category: string) => {
+    console.log("[addCategory]");
+    // Make sure the subcategory has not been added already.
+    if (!selectedCategories.includes(category)) {
+      // Add the subcategory to the list.
+      setSelectedCategories((prev) => [...prev, category]);
+      setFilter("");
+    }
+    // Close the dropdown shortly after category selection.
+    setTimeout(() => {
+      setToggleDD(false);
+    }, 200);
+  };
+
   useEffect(() => {
     updateSkillTags(selectedCategories);
   }, [selectedCategories]);
@@ -79,6 +94,7 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
           mode === "select" &&
           "categories-dropdown--disabled"
       )}
+      onBlur={() => setTimeout(() => setTimeout(() => setToggleDD(false), 200))}
     >
       <div className="categories-container">
         <Input
@@ -91,7 +107,7 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
           value={filter}
           onChange={(e) => filterCategories(e.target.value)}
           onFocus={() => setToggleDD(true)}
-          onBlur={() => setTimeout(() => setToggleDD(false), 100)}
+          // onBlur={() => setTimeout(() => setToggleDD(false), 100)}
         />
         {maximumTags === selectedCategories.length && mode === "select" && (
           <Info
@@ -133,16 +149,7 @@ export default function CategoriesDropdown(props: CategoriesDropdownTypes) {
                             maximumTags === selectedCategories.length &&
                             mode === "select"
                           }
-                          onClick={() => {
-                            if (!selectedCategories.includes(subcategory)) {
-                              setSelectedCategories((prev) => [
-                                ...prev,
-                                subcategory,
-                              ]);
-                              setFilter("");
-                            }
-                            // setToggleDD(false); // Close dropdown after selection
-                          }}
+                          onClick={() => addCategory(subcategory)}
                         >
                           <span className="btn__text">{subcategory}</span>
                         </Button>
